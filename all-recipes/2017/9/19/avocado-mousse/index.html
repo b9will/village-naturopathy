@@ -16,6 +16,8 @@
   <meta name="theme-color" content="#F6F3EE">
 
   <link rel="icon" href="../../../../../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../../../../apple-touch-icon.png">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="manifest" href="../../../../../site.webmanifest">
 
   <link rel="preload" href="../../../../../assets/fonts/Zodiak-Variable.woff2" as="font" type="font/woff2" crossorigin>
@@ -80,7 +82,10 @@
   <h3>Ingredients</h3><p>Serves 4</p><ul><li>2 medium &nbsp;ripe avocados</li><li>2 tbsp honey, maple syrup or sweetener of your choice (ie. stevia)</li><li>1 tsp vanilla</li><li>pinch of salt</li><li>1/4 cup pure cocoa</li><li>1/4 cup additional ingredients such as unsweetened shredded coconut, nuts/seeds, chocolate chips or whatever you'd like</li></ul><h3>Directions&nbsp;</h3><ol><li>Scoop out avocados and place in medium sized bowl</li><li>Add cocoa, salt, vanilla and sweetener and mix on high until lumps of avocado are no longer there</li><li>Once smooth, add in other desired ingredients and incorporate</li></ol><p>Enjoy! xx</p>
 
         <div class="article-author">
-          <img src="../../../../../assets/images/heather-portrait.jpg" width="64" height="64" alt="Dr. Heather Robinson" loading="lazy">
+          <picture>
+                  <source srcset="../../../../../assets/images/heather-portrait.webp" type="image/webp">
+                  <img src="../../../../../assets/images/heather-portrait.jpg" width="64" height="64" alt="Dr. Heather Robinson" loading="lazy">
+                </picture>
           <div class="article-author-info">
             <p class="article-author-name">Dr. Heather Robinson, ND</p>
             <p>Naturopathic doctor specialising in stress, hormones, and gut health for women. <a href="../../../../../about.html" style="color:var(--warm-deep)">Learn more &rarr;</a></p>
@@ -93,7 +98,10 @@
     <section class="section" style="padding-block:var(--section-y)" aria-labelledby="cta-title">
       <div class="container">
         <div class="cta-banner reveal">
-          <img src="../../../../../assets/images/stilllife-vase.jpg" alt="" class="cta-banner-img" loading="lazy">
+          <picture>
+                  <source srcset="../../../../../assets/images/stilllife-vase.webp" type="image/webp">
+                  <img src="../../../../../assets/images/stilllife-vase.jpg" alt="" class="cta-banner-img" loading="lazy">
+                </picture>
           <div class="cta-banner-content">
             <p class="eyebrow">Ready to get started?</p>
             <h2 id="cta-title">It&rsquo;s absolutely possible &mdash; you just need to be shown how.</h2>
@@ -126,6 +134,7 @@
           <a href="../../../../../services.html">Services</a>
           <a href="../../../../../conditions.html">Conditions Treated</a>
           <a href="../../../../../fees.html">Fees</a>
+          <a href="https://villagenaturopathy.fullscript.com" target="_blank" rel="noopener noreferrer">Fullscript</a>
           <a href="../../../../../book.html">Book Now</a>
         </div>
         <div class="footer-col">
@@ -144,7 +153,21 @@
             <p>Virtual clinic serving<br>Ontario &amp; the United Kingdom</p>
           </div>
           <div class="footer-contact-item">
-            <p>Mon 9&ndash;5 &middot; Wed 9&ndash;1 &middot; Fri 9&ndash;5</p>
+            <div class="footer-hours">
+              <span>Mon</span><span>9 &ndash; 5 EST</span>
+              <span>Wed</span><span>9 &ndash; 1 EST</span>
+              <span>Fri</span><span>9 &ndash; 5 EST</span>
+            </div>
+          <div class="footer-clocks" id="footer-clocks">
+              <div class="footer-clock">
+                <span class="footer-clock-label"><img src="../../../../../assets/images/flag-canada.svg" alt="" width="16" height="12"> Ontario</span>
+                <span class="clock-time" data-tz="America/Toronto"></span>
+              </div>
+              <div class="footer-clock">
+                <span class="footer-clock-label"><img src="../../../../../assets/images/flag-uk.svg" alt="" width="16" height="12"> London</span>
+                <span class="clock-time" data-tz="Europe/London"></span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -152,7 +175,8 @@
         <p>&copy; 2026 Dr. Heather Robinson, ND &middot; Village Naturopathy</p>
         <div class="footer-bottom-links">
           <a href="../../../../../contact.html">Contact</a>
-          <a href="../../../../../book.html">Book Now</a>
+          <a href="../../../../../privacy.html">Privacy</a>
+          <a class="btn btn--warm btn--sm" href="../../../../../book.html">Book Now</a>
         </div>
       </div>
     </div>

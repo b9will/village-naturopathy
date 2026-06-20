@@ -314,7 +314,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 2vw, 24px); }
 .card {
   display: flex; flex-direction: column; background: #fff;
-  border: 1px solid var(--border-hairline); border-radius: var(--radius-md); overflow: hidden;
+  border: 1px solid var(--border-hairline); border-radius: 16px; overflow: hidden;
   box-shadow: 0 2px 6px rgba(27,27,27,0.06);
   transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
   height: 100%;
@@ -325,7 +325,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 .card:hover .card-media img { transform: scale(1.04); }
 .card-body { padding: var(--space-md) var(--space-md) var(--space-lg); display: flex; flex-direction: column; gap: var(--space-xs); flex: 1; }
 .card-body h3 { line-height: 1.2; }
-.card-body p { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+.card-body p {
+  font-size: 16px; color: var(--text-body); line-height: 1.55;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
 .card-link {
   margin-top: auto; padding-top: var(--space-xs); font-family: var(--font-sans); font-size: 12px; font-weight: 500;
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
@@ -497,6 +500,23 @@ ul { margin: 0; padding: 0; list-style: none; }
 .footer-bottom-links { display: flex; gap: var(--space-md); }
 .footer-bottom-links a { font-size: 13px; color: var(--text-faint); }
 .footer-bottom-links a:hover { color: var(--text-muted); }
+.footer-bottom-links .btn { font-size: 12px; padding: 8px 18px; }
+.footer-hours {
+  display: grid; grid-template-columns: auto 1fr; gap: 2px 12px;
+  font-size: 14px; color: var(--text-subtle); line-height: 1.6;
+}
+.footer-clocks {
+  display: grid; grid-template-columns: auto 1fr; gap: 2px 12px;
+  font-size: 14px; color: var(--text-subtle); line-height: 1.6; margin-top: 12px;
+}
+.footer-clock {
+  display: contents;
+}
+.footer-clock-label {
+  display: flex; align-items: center; gap: 6px;
+}
+.footer-clock-label img { width: 16px; height: 12px; object-fit: cover; border-radius: 1px; flex-shrink: 0; }
+.clock-time { font-variant-numeric: tabular-nums; }
 
 /* ---- Scroll-triggered reveals ---- */
 .reveal {
@@ -922,7 +942,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* ---- Back to top ---- */
 .back-to-top {
-  position: fixed; bottom: 32px; right: 32px; z-index: var(--z-sticky);
+  position: fixed; bottom: 80px; right: 32px; z-index: var(--z-sticky);
   width: 44px; height: 44px; border-radius: 50%;
   background: var(--sage-900); color: var(--cream); border: none; cursor: pointer;
   display: flex; align-items: center; justify-content: center;

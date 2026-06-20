@@ -321,6 +321,21 @@
     footerObs.observe(footerTop);
   }
 
+  // Footer clocks — Toronto + London
+  var clockEls = document.querySelectorAll(".clock-time[data-tz]");
+  if (clockEls.length) {
+    function updateClocks() {
+      clockEls.forEach(function (el) {
+        el.textContent = new Intl.DateTimeFormat("en-US", {
+          hour: "numeric", minute: "2-digit", timeZoneName: "short",
+          timeZone: el.getAttribute("data-tz")
+        }).format(new Date());
+      });
+    }
+    updateClocks();
+    setInterval(updateClocks, 60000);
+  }
+
   // 10. Lenis smooth scroll — butter-smooth momentum scrolling
   if (!prefersReducedMotion) {
     var s = document.createElement("script");
