@@ -1,26 +1,78 @@
 (function () {
   "use strict";
 
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   // Mobile menu toggle
   var nav = document.getElementById("nav");
   var toggle = nav && nav.querySelector(".nav-toggle");
+  var hamburgerIcon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>';
+  var closeIcon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+
+  function closeMenu() {
+    nav.setAttribute("data-open", "false");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.innerHTML = hamburgerIcon;
+    document.body.style.overflow = "";
+  }
+
   if (nav && toggle) {
+    // Inject CTA + social links into nav-links for mobile
+    var navLinksEl = nav.querySelector(".nav-links");
+    if (navLinksEl) {
+      var mobileCta = document.createElement("li");
+      mobileCta.className = "mobile-cta";
+      mobileCta.innerHTML = '<a class="btn btn--warm" href="book.html">Book now</a>';
+      navLinksEl.appendChild(mobileCta);
+
+      var mobileSocial = document.createElement("li");
+      mobileSocial.className = "mobile-social";
+      mobileSocial.innerHTML =
+        '<a href="https://www.facebook.com/villagenaturopathy" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>' +
+        '<a href="https://www.instagram.com/villagenaturopathy" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>';
+      navLinksEl.appendChild(mobileSocial);
+    }
+
     toggle.addEventListener("click", function () {
       var open = nav.getAttribute("data-open") === "true";
       nav.setAttribute("data-open", String(!open));
       toggle.setAttribute("aria-expanded", String(!open));
+      toggle.innerHTML = !open ? closeIcon : hamburgerIcon;
+      document.body.style.overflow = !open ? "hidden" : "";
     });
     nav.querySelectorAll(".nav-links a, .nav-cta").forEach(function (link) {
       link.addEventListener("click", function () {
-        nav.setAttribute("data-open", "false");
-        toggle.setAttribute("aria-expanded", "false");
+        closeMenu();
       });
     });
   }
 
+  // 1. Text clip-reveal — wrap section headings in mask spans (before observer)
+  if (!prefersReducedMotion) {
+    document.querySelectorAll(".section-head h2, .split-copy h2, .cta-banner-content h2").forEach(function (el) {
+      if (el.closest(".hero-copy")) return;
+      var wrapper = document.createElement("span");
+      wrapper.className = "text-reveal";
+      var inner = document.createElement("span");
+      inner.innerHTML = el.innerHTML;
+      wrapper.appendChild(inner);
+      el.innerHTML = "";
+      el.appendChild(wrapper);
+    });
+  }
+
+  // 5. Eyebrow slide-in (before observer)
+  if (!prefersReducedMotion) {
+    document.querySelectorAll(".section-head .eyebrow, .split-copy .eyebrow, .cta-banner-content .eyebrow").forEach(function (el) {
+      if (el.closest(".hero-copy, .article-hero, .booking-panel, .page-hero")) return;
+      el.classList.add("eyebrow-anim");
+    });
+  }
+
   // Scroll-triggered reveal animations
+  var observer;
   if ("IntersectionObserver" in window) {
-    var observer = new IntersectionObserver(
+    observer = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
@@ -39,6 +91,14 @@
       el.classList.add("is-visible");
     });
   }
+
+  // 3. Staggered reveals — add to grids that don't have it
+  document.querySelectorAll(".focus-grid, .credentials").forEach(function (el) {
+    if (!el.classList.contains("reveal-stagger") && !el.classList.contains("reveal")) {
+      el.classList.add("reveal-stagger");
+      if (observer) observer.observe(el);
+    }
+  });
 
   // Booking region modal
   var modalHTML = '<div class="modal-overlay" id="book-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">' +
@@ -98,8 +158,6 @@
       window.scrollTo(0, 0);
     });
   }
-
-  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // Animated stat counters
   if ("IntersectionObserver" in window) {
@@ -204,4 +262,81 @@
       navLinks.classList.remove("nav-hidden");
     }
   });
+
+  // ---- Premium animations ----
+
+  // 7. Magnetic buttons — subtle cursor-follow on hover
+  if (!prefersReducedMotion) {
+    document.querySelectorAll(".btn").forEach(function (btn) {
+      btn.addEventListener("mousemove", function (e) {
+        var rect = btn.getBoundingClientRect();
+        var x = e.clientX - rect.left - rect.width / 2;
+        var y = e.clientY - rect.top - rect.height / 2;
+        btn.style.setProperty("--mx", (x * 0.075) + "px");
+        btn.style.setProperty("--my", (y * 0.075) + "px");
+      });
+      btn.addEventListener("mouseleave", function () {
+        btn.style.setProperty("--mx", "0px");
+        btn.style.setProperty("--my", "0px");
+      });
+    });
+  }
+
+  // 8. Page transition fade — smooth crossfade between pages
+  if (!prefersReducedMotion) {
+    document.addEventListener("click", function (e) {
+      var link = e.target.closest("a");
+      if (!link || e.defaultPrevented) return;
+      var href = link.getAttribute("href");
+      if (!href || href.charAt(0) === "#" || href.startsWith("mailto") || href.startsWith("javascript") || href.startsWith("tel")) return;
+      if (link.target === "_blank") return;
+      if (link.hostname && link.hostname !== "" && link.hostname !== window.location.hostname) return;
+      e.preventDefault();
+      document.body.classList.add("page-leaving");
+      setTimeout(function () { window.location.href = href; }, 200);
+    });
+    window.addEventListener("pageshow", function (e) {
+      if (e.persisted) document.body.classList.remove("page-leaving");
+    });
+  }
+
+  // 9. Footer parallax reveal — staggered column entrance
+  var footerTop = document.querySelector(".footer-top");
+  if (footerTop && "IntersectionObserver" in window && !prefersReducedMotion) {
+    var footerItems = footerTop.querySelectorAll(".footer-brand, .footer-col");
+    footerItems.forEach(function (item, i) {
+      item.classList.add("footer-col-reveal");
+      item.style.transitionDelay = (i * 100) + "ms";
+    });
+    var footerObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll(".footer-col-reveal").forEach(function (item) {
+            item.classList.add("is-visible");
+          });
+          footerObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    footerObs.observe(footerTop);
+  }
+
+  // 10. Lenis smooth scroll — butter-smooth momentum scrolling
+  if (!prefersReducedMotion) {
+    var s = document.createElement("script");
+    s.src = "https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js";
+    s.onload = function () {
+      try {
+        var lenis = new Lenis({
+          duration: 1.2,
+          easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+          smoothWheel: true
+        });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+        document.documentElement.style.scrollBehavior = "auto";
+      } catch (e) {}
+    };
+    document.head.appendChild(s);
+  }
 })();
