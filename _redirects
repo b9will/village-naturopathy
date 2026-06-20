@@ -1,0 +1,36 @@
+# Redirects from old Squarespace site (villagenaturopathy.com)
+# Preserves SEO equity from existing indexed URLs
+
+# Core pages
+/home  /  301
+/welcome  /  301
+/about-5  /about.html  301
+/services  /services.html  301
+/services-1  /services.html  301
+/howwecanhelp  /services.html  301
+/how-i-can-help  /services.html  301
+/practitioners  /about.html  301
+/fees  /fees.html  301
+/fees-1  /fees.html  301
+/booknow  /book.html  301
+/contact-1  /contact.html  301
+/contact-2  /contact.html  301
+/booking.html  /book.html  301
+/articles  /journal.html  301
+/articles-1  /journal.html  301
+/recipes  /journal.html  301
+/recipes-1  /journal.html  301
+/recipes-2  /journal.html  301
+/downloads  /resources.html  301
+/downlaods  /resources.html  301
+/feature  /  301
+/new-page-1  /  301
+/new-page-2  /  301
+/resume  /about.html  301
+/thank-you  /  301
+/image  /  301
+/holistic-stress-solution-course  /resources.html  301
+
+# Article/recipe index pages (individual articles are served directly)
+/all-articles  /journal.html  301
+/all-recipes  /journal.html  301

@@ -1,0 +1,12 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+
+# Dependencies / build (none required for the static site, kept for future tooling)
+node_modules/
+dist/
+.cache/
+.wrangler/

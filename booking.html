@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book a Consult — Village Naturopathy</title>
+  <meta name="description" content="Book a free 20-minute virtual naturopathic consultation with Dr. Heather Robinson, ND. Tell us about your health goals and we'll map a path forward together.">
+  <link rel="canonical" href="https://villagenaturopathy.com/booking.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Village Naturopathy">
+  <meta property="og:title" content="Book a Consult — Village Naturopathy">
+  <meta property="og:description" content="Book a free 20-minute virtual naturopathic consultation with Dr. Heather Robinson, ND.">
+  <meta property="og:url" content="https://villagenaturopathy.com/booking.html">
+  <meta property="og:image" content="https://villagenaturopathy.com/assets/images/hero-portrait.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#F6F3EE">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="preload" href="assets/fonts/Zodiak-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ClashGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="css/styles.css">
+  <noscript><style>.reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; }</style></noscript>
+
+  <!-- GA4 — uncomment and add your Measurement ID to activate
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Village Naturopathy",
+    "url": "https://villagenaturopathy.com/",
+    "email": "drheather@villagenaturopathy.com",
+    "areaServed": ["Ontario", "United Kingdom"],
+    "makesOffer": {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "MedicalTherapy",
+        "name": "Initial Naturopathic Consultation",
+        "description": "A 20-minute virtual consult to understand your story and map a path forward. No obligation."
+      }
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+      <nav class="nav" id="nav" aria-label="Primary">
+        <a class="brand" href="./" aria-label="Village Naturopathy home">Village<br>Naturopathy</a>
+        <ul class="nav-links">
+          <li><a href="about.html">About</a></li>
+          <li><a href="about.html#approach">Approach</a></li>
+          <li><a href="journal.html">Journal</a></li>
+        </ul>
+        <a class="btn btn--warm btn--sm nav-cta" href="booking.html" aria-current="page">Book a consult</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Toggle menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </nav>
+  </header>
+
+  <main id="main">
+    <section class="booking-split" aria-labelledby="booking-title">
+      <div class="booking-panel">
+        <p class="eyebrow">Book a consult</p>
+        <h1 id="booking-title">Let&rsquo;s find the root cause, together.</h1>
+        <p class="lead" style="margin-top:18px">A 20-minute virtual consult to understand your story and map a path forward. No obligation.</p>
+      </div>
+
+      <div class="booking-form-wrap">
+        <form class="booking-form" id="booking-form" action="#" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="first-name">First name <span class="required">*</span></label>
+              <input class="form-input" id="first-name" name="first_name" type="text" placeholder="Jane" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="last-name">Last name <span class="required">*</span></label>
+              <input class="form-input" id="last-name" name="last_name" type="text" placeholder="Doe" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email <span class="required">*</span></label>
+            <input class="form-input" id="email" name="email" type="email" placeholder="you@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="concern">Primary concern</label>
+            <select class="form-select" id="concern" name="concern">
+              <option value="" disabled selected>Choose one</option>
+              <option value="hormones">Hormones</option>
+              <option value="gut">Gut health</option>
+              <option value="stress">Stress &amp; anxiety</option>
+              <option value="energy">Energy &amp; longevity</option>
+              <option value="mental-health">Mental health</option>
+              <option value="unsure">Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="notes">What would you like to work on?</label>
+            <input class="form-input" id="notes" name="notes" type="text" placeholder="A sentence or two is plenty">
+          </div>
+          <label class="form-check">
+            <input type="checkbox" name="newsletter" checked>
+            <span>Email me seasonal wellness notes from the Journal</span>
+          </label>
+          <div style="margin-top:4px">
+            <button class="btn btn--primary" type="submit" style="width:100%">Request my consult</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="booking-confirm" id="booking-confirm" aria-labelledby="confirm-title" hidden>
+      <div class="booking-confirm-media">
+        <img src="assets/images/portrait-1.jpg" width="640" height="600" alt="A woman in natural light." loading="lazy">
+      </div>
+      <div class="booking-confirm-copy">
+        <p class="eyebrow" style="color:var(--sage)">Request received</p>
+        <h1 id="confirm-title" style="margin-top:16px">Thank you. We&rsquo;ll be in touch within one business day.</h1>
+        <p class="lead" style="margin-top:18px;max-width:420px">Heather reviews every request personally to make sure we&rsquo;re the right fit before your first visit.</p>
+        <a class="btn btn--outline" href="./" style="margin-top:30px;align-self:flex-start">Back to home</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bar">
+        <span class="brand">Village Naturopathy</span>
+        <nav aria-label="Footer" class="footer-nav">
+          <a href="about.html">About</a>
+          <a href="journal.html">Journal</a>
+          <a href="booking.html">Book a consult</a>
+        </nav>
+        <span class="muted">&copy; 2026 &middot; Virtual care, wherever you are</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

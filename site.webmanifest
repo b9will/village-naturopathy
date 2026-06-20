@@ -1,0 +1,12 @@
+{
+  "name": "Village Naturopathy",
+  "short_name": "Village",
+  "description": "Root-cause naturopathic care for women.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F6F3EE",
+  "theme_color": "#F6F3EE",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
