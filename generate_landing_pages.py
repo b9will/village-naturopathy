@@ -96,7 +96,7 @@ def footer_html():
           <a href="{REL}conditions.html">Conditions Treated</a>
           <a href="{REL}fees.html">Fees</a>
           <a href="https://villagenaturopathy.fullscript.com" target="_blank" rel="noopener noreferrer">Fullscript</a>
-          <a href="{REL}book.html">Book Now</a>
+          <a href="{REL}careers.html">Careers</a>
         </div>
         <div class="footer-col">
           <span class="footer-col-title">Learn</span>
@@ -127,12 +127,14 @@ def footer_html():
           </div>
         </div>
       </div>
+      <div class="footer-cta">
+        <a class="btn btn--sage" href="{REL}book.html">Book a free discovery call</a>
+      </div>
       <div class="footer-bottom">
         <p>&copy; 2026 Dr. Heather Robinson, ND &middot; Village Naturopathy</p>
         <div class="footer-bottom-links">
           <a href="{REL}contact.html">Contact</a>
           <a href="{REL}privacy.html">Privacy</a>
-          <a class="btn btn--warm btn--sm" href="{REL}book.html">Book Now</a>
         </div>
       </div>
     </div>
