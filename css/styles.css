@@ -228,7 +228,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .brand {
   display: inline-flex; align-items: center;
 }
-.brand img { height: clamp(48px, 7vw, 96px); width: auto; }
+.brand img { height: clamp(48px, 10vw, 144px); width: auto; }
 .nav-links {
   display: flex; gap: var(--space-md); align-items: center;
   background: rgba(44,51,39,0.85);
