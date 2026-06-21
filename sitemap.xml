@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://villagenaturopathy.com/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://villagenaturopathy.com/about.html</loc>
     <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
@@ -16,43 +22,13 @@
     <loc>https://villagenaturopathy.com/conditions.html</loc>
     <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/contact.html</loc>
     <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://villagenaturopathy.com/fees.html</loc>
-    <lastmod>2026-06-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://villagenaturopathy.com/</loc>
-    <lastmod>2026-06-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://villagenaturopathy.com/journal.html</loc>
-    <lastmod>2026-06-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://villagenaturopathy.com/privacy.html</loc>
-    <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://villagenaturopathy.com/resources.html</loc>
-    <lastmod>2026-06-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/services.html</loc>
@@ -61,171 +37,273 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://villagenaturopathy.com/404.html</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/10/10/fertility-awareness-method-fam/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/10/10/the-minds-of-men/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/10/10/to-gluten-or-not-to-gluten-is-that-the-question/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/10/10/under-armour-the-dos-and-donts-of-deodorant/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/10/10/winter-woes-why-you-need-vitamin-d/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/10/15/5-easy-steps-for-boosting-brain-power/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/10/15/facial-fads-4-diy-face-masks-already-in-your-kitchen/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/10/15/whats-poppin-navigating-acne-in-adulthood/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/12/18/the-brain-and-the-belly-how-our-gut-health-impacts-mood-and-more/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/12/4/acdc-activated-charcoal-the-detox-conspiracy/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/12/4/hooter-health-breast-awareness-for-cancer-prevention/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/9/19/detoxification-series-part-2-5-ways-to-support-elimination-in-the-body/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/9/19/sun-smart-a-practical-guide-for-sunscreen-consumers/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/9/22/clean-up-your-sleep/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/9/22/heads-up-the-low-down-on-concussions/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2017/9/22/the-s-word-the-impact-of-stress-on-your-immune-system/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2018/1/3/acupuncture-101-getting-to-know-acu/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2018/1/8/foundations-of-health-stress/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2018/10/15/mindfulness-for-those-who-dont-like-meditation-and-why-you-want-to-start-today/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2018/10/4/eating-mindfully-fight-or-flight-vs-rest-and-digest/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2018/2/5/know-your-cycle-the-follicular-phase/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-articles/2018/3/6/the-healthy-ageing-brain/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-recipes/2017/9/18/coconut-strawberry-overnight-oats/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-recipes/2017/9/19/avocado-mousse/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-recipes/2017/9/19/buffalo-cauliflower-tacos/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-recipes/2017/9/19/eat-yo-greens-soup/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-recipes/2017/9/19/fall-fruit-and-spice-bake/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://villagenaturopathy.com/all-recipes/2017/9/19/white-peach-tea-sangria/</loc>
     <lastmod>2026-06-20</lastmod>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/booking.html</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/conditions/digestive-gut-health/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/conditions/fatigue-sleep-energy/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/conditions/hormonal-imbalances-womens-health/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/conditions/mental-health-emotional-wellbeing/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/conditions/skin-conditions-general-wellness/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/conditions/stress-anxiety-nervous-system/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/conditions/thyroid-autoimmune/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/fees.html</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/journal.html</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/privacy.html</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/resources.html</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/services/gut-health/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/services/hormone-balancing/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/services/mental-health-counselling/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://villagenaturopathy.com/services/stress-anxiety/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

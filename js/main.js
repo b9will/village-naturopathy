@@ -132,7 +132,7 @@
       document.body.style.overflow = '';
     }
 
-    document.querySelectorAll('a[href="book.html"]').forEach(function (link) {
+    document.querySelectorAll('a[href$="book.html"]').forEach(function (link) {
       if (!link.closest('.footer-col') && !link.closest('.footer-bottom-links') && !link.classList.contains('nav-cta')) {
         link.addEventListener('click', openModal);
       }
@@ -334,6 +334,27 @@
     }
     updateClocks();
     setInterval(updateClocks, 60000);
+  }
+
+  // Footer email — click to copy with toast
+  var footerEmail = document.querySelector('.footer-contact-item a[href^="mailto:"]');
+  if (footerEmail) {
+    footerEmail.addEventListener("click", function (e) {
+      e.preventDefault();
+      var email = footerEmail.textContent.trim();
+      navigator.clipboard.writeText(email).then(function () {
+        var toast = document.getElementById("copy-toast");
+        if (!toast) {
+          toast = document.createElement("div");
+          toast.id = "copy-toast";
+          toast.className = "toast";
+          toast.textContent = "Email copied to clipboard";
+          document.body.appendChild(toast);
+        }
+        toast.classList.add("show");
+        setTimeout(function () { toast.classList.remove("show"); }, 2200);
+      });
+    });
   }
 
   // 10. Lenis smooth scroll — butter-smooth momentum scrolling
