@@ -79,12 +79,12 @@
 
   <header class="site-header">
       <nav class="nav" id="nav" aria-label="Primary">
-        <a class="brand" href="index.html" aria-label="Village Naturopathy home"><img src="assets/images/logo-full-white.png" alt="Village Naturopathy" height="36"></a>
         <ul class="nav-links">
           <li><a href="about.html">About</a></li>
           <li><a href="services.html">Services</a></li>
+          <li class="nav-brand"><a class="brand" href="index.html" aria-label="Village Naturopathy home"><img src="assets/images/village-logo-white.png" alt="Village Naturopathy" height="36"></a></li>
           <li><a href="journal.html">Journal</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="resources.html">Programs</a></li>
         </ul>
         <a class="btn btn--warm btn--sm nav-cta" href="book.html">Book now</a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Toggle menu">
@@ -103,7 +103,7 @@
           <p class="lead">Virtual naturopathic medicine for busy, driven women. Serving Ontario &amp; the UK.</p>
           <p class="hero-est">Established 2017</p>
           <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:var(--space-md)">
-            <a class="btn btn--warm" href="book.html">Book a free consult</a>
+            <a class="btn btn--warm" href="book.html">Request a consultation</a>
             <a class="btn btn--on-dark" href="services.html">View services</a>
           </div>
         </div>
@@ -121,11 +121,11 @@
       <div class="trust-bar reveal" style="border-bottom:1px solid var(--border-hairline)">
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-          Licensed &amp; insured
+          Registered naturopathic doctor
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
-          Virtual appointments
+          Private virtual consultations
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
@@ -133,7 +133,7 @@
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
-          Free discovery call
+          Complimentary discovery call
         </div>
       </div>
     </div>
@@ -185,7 +185,7 @@
         </ul>
         <div class="section-head reveal" style="margin-top:clamp(36px,5vw,48px)">
           <p class="lead" style="max-width:48ch;text-align:center">If any of this resonates, you&rsquo;re in the right place. Let&rsquo;s find the root cause together.</p>
-          <a class="btn btn--accent" href="book.html">Book a free discovery call</a>
+          <a class="btn btn--accent" href="book.html">Schedule a discovery call</a>
         </div>
       </div>
     </section>
@@ -198,7 +198,7 @@
           <h2 id="focus-title">Whole-body care, not symptom management.</h2>
         </div>
         <ul class="grid-2 reveal-stagger">
-          <li><a class="card" href="services.html#stress">
+          <li><div class="card">
             <div class="card-media"><picture>
                   <source srcset="assets/images/system-stress.webp" type="image/webp">
                   <img src="assets/images/system-stress.jpg" width="400" height="240" alt="Stacked stones balanced on a hillside at golden hour." loading="lazy">
@@ -207,10 +207,13 @@
               <p class="eyebrow">Stress &amp; anxiety</p>
               <h3>Calm your nervous system</h3>
               <p>We identify the root causes of stress, overwhelm and anxiety and help you incorporate the foundational tools to reduce your stress response.</p>
-              <span class="card-link">Learn more &rarr;</span>
+              <div class="card-actions">
+                <a class="btn btn--outline btn--sm" href="services.html#stress">Learn more</a>
+                <a class="btn btn--warm btn--sm" href="book.html">Book now</a>
+              </div>
             </div>
-          </a></li>
-          <li><a class="card" href="services.html#hormones">
+          </div></li>
+          <li><div class="card">
             <div class="card-media"><picture>
                   <source srcset="assets/images/system-hormones.webp" type="image/webp">
                   <img src="assets/images/system-hormones.jpg" width="400" height="240" alt="Three women standing together in warm light against a sand-coloured wall." loading="lazy">
@@ -219,10 +222,13 @@
               <p class="eyebrow">Hormones</p>
               <h3>Balance every stage</h3>
               <p>Irregular, painful, heavy or absent periods, PCOS, hypothalamic amenorrhea, endometriosis, acne, hair loss, weight changes. Hormone issues are common but not normal.</p>
-              <span class="card-link">Learn more &rarr;</span>
+              <div class="card-actions">
+                <a class="btn btn--outline btn--sm" href="services.html#hormones">Learn more</a>
+                <a class="btn btn--warm btn--sm" href="book.html">Book now</a>
+              </div>
             </div>
-          </a></li>
-          <li><a class="card" href="services.html#gut">
+          </div></li>
+          <li><div class="card">
             <div class="card-media"><picture>
                   <source srcset="assets/images/system-gut.webp" type="image/webp">
                   <img src="assets/images/system-gut.jpg" width="400" height="240" alt="A kitchen counter with herbal teas, ginger, and glass jars of dried herbs." loading="lazy">
@@ -231,10 +237,13 @@
               <p class="eyebrow">Gut health</p>
               <h3>Heal your gut</h3>
               <p>A healthy gut means a healthy nervous system and healthy hormones. Whether it&rsquo;s IBS, SIBO, or optimising digestion &mdash; the gut is key.</p>
-              <span class="card-link">Learn more &rarr;</span>
+              <div class="card-actions">
+                <a class="btn btn--outline btn--sm" href="services.html#gut">Learn more</a>
+                <a class="btn btn--warm btn--sm" href="book.html">Book now</a>
+              </div>
             </div>
-          </a></li>
-          <li><a class="card" href="services.html#mental-health">
+          </div></li>
+          <li><div class="card">
             <div class="card-media"><picture>
                   <source srcset="assets/images/system-energy.webp" type="image/webp">
                   <img src="assets/images/system-energy.jpg" width="400" height="240" alt="A warm, sunlit bedroom with terracotta bedding and a bedside table." loading="lazy">
@@ -243,10 +252,16 @@
               <p class="eyebrow">Mental health</p>
               <h3>Mind &amp; body together</h3>
               <p>Anxiety, depression, and stress management through CBT, holistic counselling, and naturopathic approaches that treat the whole person.</p>
-              <span class="card-link">Learn more &rarr;</span>
+              <div class="card-actions">
+                <a class="btn btn--outline btn--sm" href="services.html#mental-health">Learn more</a>
+                <a class="btn btn--warm btn--sm" href="book.html">Book now</a>
+              </div>
             </div>
-          </a></li>
+          </div></li>
         </ul>
+        <div style="text-align:center;margin-top:var(--space-xl)" class="reveal">
+          <a class="btn btn--primary" href="services.html">View all services</a>
+        </div>
       </div>
     </section>
 
@@ -262,9 +277,9 @@
           </div>
           <div class="split-copy">
             <p class="eyebrow">Meet Dr. Heather</p>
-            <h2 id="about-title">I grew up a naturally anxious and easily stressed-out person. I get it.</h2>
-            <p class="lead">Village Naturopathy was founded to bring quality, specific care to busy, driven, stressed-out women &mdash; without the limitation of geography.</p>
-            <p style="margin-top:12px;color:var(--text-muted)">Dr. Heather Robinson, ND, holds a degree in Psychology from the University of Ottawa and is a Certified HeartMath Practitioner. She is registered with the College of Naturopaths of Ontario and is a member of OAND, CAND, and the Association of Naturopathic Practitioners (UK).</p>
+            <h2 id="about-title">Trained in psychology and naturopathic medicine &mdash; because your mind and body aren&rsquo;t separate problems.</h2>
+            <p class="lead">Dr. Heather Robinson, ND founded Village Naturopathy to deliver thorough, personalised care to high-performing women &mdash; without the limitation of geography.</p>
+            <p style="margin-top:12px;color:var(--text-muted)">One of few practitioners bridging clinical psychology with naturopathic medicine. B.A. Psychology (University of Ottawa), Certified HeartMath Practitioner. Registered with the College of Naturopaths of Ontario and the Association of Naturopathic Practitioners (UK). 9+ years in practice.</p>
             <a class="btn btn--ghost" href="about.html">Read my full story &rarr;</a>
           </div>
         </div>
@@ -329,15 +344,12 @@
     <section class="section" style="padding-block:var(--section-y)" aria-labelledby="cta-title">
       <div class="container">
         <div class="cta-banner reveal">
-          <picture>
-                  <source srcset="assets/images/stilllife-vase.webp" type="image/webp">
-                  <img src="assets/images/stilllife-vase.jpg" alt="" class="cta-banner-img" loading="lazy">
-                </picture>
+          <img src="assets/images/cta-1.png" alt="" class="cta-banner-img" loading="lazy">
           <div class="cta-banner-content">
             <p class="eyebrow">Ready to get started?</p>
-            <h2 id="cta-title">It&rsquo;s absolutely possible &mdash; you just need to be shown how.</h2>
-            <p>Book a complimentary discovery call and take the first step toward feeling your best.</p>
-            <a class="btn btn--warm" href="book.html">Book a free consult</a>
+            <h2 id="cta-title">You&rsquo;ve built an exceptional life. Your health should match.</h2>
+            <p>Request your consultation and take the first step toward feeling your best.</p>
+            <a class="btn btn--warm" href="book.html">Request a consultation</a>
           </div>
         </div>
       </div>
@@ -348,7 +360,7 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <span class="brand"><img src="assets/images/logo-full-black.png" alt="Village Naturopathy" height="128"></span>
+          <span class="brand"><img src="assets/images/village-logo-black.png" alt="Village Naturopathy" height="128"></span>
           <p>Root-cause naturopathic care for women navigating stress, hormones, and everything in between.</p>
           <div class="footer-social">
             <a href="https://www.facebook.com/villagenaturopathy" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
@@ -365,7 +377,7 @@
           <a href="services.html">Services</a>
           <a href="conditions.html">Conditions Treated</a>
           <a href="fees.html">Fees</a>
-          <a href="https://villagenaturopathy.fullscript.com" target="_blank" rel="noopener noreferrer">Fullscript</a>
+          <a href="https://ca.fullscript.com/welcome/villagenaturopathy/store-start" target="_blank" rel="noopener noreferrer">Fullscript</a>
           <a href="careers.html">Careers</a>
         </div>
         <div class="footer-col">
@@ -398,13 +410,15 @@
         </div>
       </div>
       <div class="footer-cta">
-        <a class="btn btn--sage" href="book.html">Book a free discovery call</a>
+        <a class="btn btn--sage" href="book.html">Schedule a discovery call</a>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2026 Dr. Heather Robinson, ND &middot; Village Naturopathy</p>
         <div class="footer-bottom-links">
           <a href="contact.html">Contact</a>
           <a href="privacy.html">Privacy</a>
+        
+          <a href="#" data-cookie-settings>Cookie settings</a>
         </div>
       </div>
     </div>

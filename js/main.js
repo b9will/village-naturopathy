@@ -197,6 +197,14 @@
   var navLinks = document.querySelector(".nav-links");
   var lastScrollY = 0;
 
+  // Clone brand for mobile (sits outside the overlay)
+  var navBrandLi = navLinks && navLinks.querySelector(".nav-brand .brand");
+  if (navBrandLi && nav) {
+    var mobileBrand = navBrandLi.cloneNode(true);
+    mobileBrand.classList.add("mobile-brand");
+    nav.insertBefore(mobileBrand, navLinks);
+  }
+
   // Parallax hero image
   var heroBg = document.querySelector(".hero-bg img");
   var heroSection = document.querySelector(".hero");
@@ -225,7 +233,7 @@
         progressBar.style.transform = "scaleX(" + (scrollY / docHeight) + ")";
       }
 
-      // Nav pill hide/show (brand + CTA stay visible)
+      // Nav pill hide/show on scroll direction
       if (navLinks) {
         if (scrollY > 200 && scrollY > lastScrollY) {
           navLinks.classList.add("nav-hidden");
@@ -355,6 +363,169 @@
         setTimeout(function () { toast.classList.remove("show"); }, 2200);
       });
     });
+  }
+
+  // ---- GDPR Cookie Consent ----
+  var CONSENT_KEY = "vn_cookie_consent";
+
+  function getConsent() {
+    try { return JSON.parse(localStorage.getItem(CONSENT_KEY)); } catch (e) { return null; }
+  }
+
+  function setConsent(prefs) {
+    prefs.timestamp = new Date().toISOString();
+    localStorage.setItem(CONSENT_KEY, JSON.stringify(prefs));
+    applyConsent(prefs);
+    hideBanner();
+    hidePrefsModal();
+  }
+
+  function applyConsent(prefs) {
+    if (prefs.analytics) loadAnalytics();
+    if (prefs.marketing) loadMarketing();
+  }
+
+  function loadAnalytics() {
+    if (document.getElementById("ga4-script")) return;
+    var gaId = document.querySelector('meta[name="ga-id"]');
+    if (!gaId) return;
+    var id = gaId.getAttribute("content");
+    if (!id || id === "G-XXXXXXXXXX") return;
+    var s = document.createElement("script");
+    s.id = "ga4-script";
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", id);
+  }
+
+  function loadMarketing() {
+    if (document.getElementById("meta-pixel-script")) return;
+    var pixelId = document.querySelector('meta[name="fb-pixel-id"]');
+    if (!pixelId) return;
+    var id = pixelId.getAttribute("content");
+    if (!id) return;
+    var s = document.createElement("script");
+    s.id = "meta-pixel-script";
+    s.textContent = "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','" + id + "');fbq('track','PageView');";
+    document.head.appendChild(s);
+  }
+
+  function buildBanner() {
+    var banner = document.createElement("div");
+    banner.className = "cookie-banner";
+    banner.id = "cookie-banner";
+    banner.setAttribute("role", "region");
+    banner.setAttribute("aria-label", "Cookie consent");
+    banner.innerHTML =
+      '<div class="cookie-banner-inner">' +
+        '<p class="cookie-banner-text">We use cookies to improve your experience and analyse site traffic. By clicking “Accept all,” you consent to our use of cookies. <a href="privacy.html">Privacy policy</a></p>' +
+        '<div class="cookie-banner-actions">' +
+          '<button class="btn--cookie-outline" id="cookie-reject">Essential only</button>' +
+          '<button class="btn--cookie-outline" id="cookie-prefs-btn">Manage preferences</button>' +
+          '<button class="btn btn--warm btn--sm" id="cookie-accept">Accept all</button>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(banner);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { banner.classList.add("is-visible"); });
+    });
+
+    document.getElementById("cookie-accept").addEventListener("click", function () {
+      setConsent({ essential: true, analytics: true, marketing: true });
+    });
+    document.getElementById("cookie-reject").addEventListener("click", function () {
+      setConsent({ essential: true, analytics: false, marketing: false });
+    });
+    document.getElementById("cookie-prefs-btn").addEventListener("click", function () {
+      showPrefsModal();
+    });
+  }
+
+  function buildPrefsModal() {
+    var current = getConsent() || { analytics: false, marketing: false };
+    var overlay = document.createElement("div");
+    overlay.className = "cookie-modal-overlay";
+    overlay.id = "cookie-modal";
+    overlay.innerHTML =
+      '<div class="cookie-modal">' +
+        '<h2>Cookie preferences</h2>' +
+        '<p>We use different types of cookies to optimise your experience. Choose which cookies you’d like to allow. You can change these settings at any time via the link in our footer.</p>' +
+        '<div class="cookie-category">' +
+          '<div class="cookie-cat-info"><strong>Essential</strong><p>Required for the site to function. Cannot be disabled.</p></div>' +
+          '<label class="cookie-toggle"><input type="checkbox" checked disabled><span class="cookie-toggle-track"></span></label>' +
+        '</div>' +
+        '<div class="cookie-category">' +
+          '<div class="cookie-cat-info"><strong>Analytics</strong><p>Help us understand how visitors use the site so we can improve it.</p></div>' +
+          '<label class="cookie-toggle"><input type="checkbox" id="cookie-analytics" ' + (current.analytics ? 'checked' : '') + '><span class="cookie-toggle-track"></span></label>' +
+        '</div>' +
+        '<div class="cookie-category">' +
+          '<div class="cookie-cat-info"><strong>Marketing</strong><p>Used to deliver relevant ads and measure campaign performance.</p></div>' +
+          '<label class="cookie-toggle"><input type="checkbox" id="cookie-marketing" ' + (current.marketing ? 'checked' : '') + '><span class="cookie-toggle-track"></span></label>' +
+        '</div>' +
+        '<div class="cookie-modal-actions">' +
+          '<button class="btn btn--sage btn--sm" id="cookie-save">Save preferences</button>' +
+          '<button class="btn--cookie-outline" id="cookie-modal-accept" style="color:var(--text-body);border-color:var(--greige)">Accept all</button>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay) hidePrefsModal();
+    });
+    document.getElementById("cookie-save").addEventListener("click", function () {
+      setConsent({
+        essential: true,
+        analytics: document.getElementById("cookie-analytics").checked,
+        marketing: document.getElementById("cookie-marketing").checked
+      });
+    });
+    document.getElementById("cookie-modal-accept").addEventListener("click", function () {
+      setConsent({ essential: true, analytics: true, marketing: true });
+    });
+  }
+
+  function showPrefsModal() {
+    var modal = document.getElementById("cookie-modal");
+    if (!modal) buildPrefsModal();
+    modal = document.getElementById("cookie-modal");
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function hidePrefsModal() {
+    var modal = document.getElementById("cookie-modal");
+    if (modal) {
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+  }
+
+  function hideBanner() {
+    var banner = document.getElementById("cookie-banner");
+    if (banner) {
+      banner.classList.remove("is-visible");
+      setTimeout(function () { if (banner.parentNode) banner.parentNode.removeChild(banner); }, 500);
+    }
+  }
+
+  // Wire up "Cookie settings" links in footers
+  document.querySelectorAll('[data-cookie-settings]').forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      showPrefsModal();
+    });
+  });
+
+  // Init: check consent on load
+  var existingConsent = getConsent();
+  if (existingConsent) {
+    applyConsent(existingConsent);
+  } else {
+    buildBanner();
   }
 
   // 10. Lenis smooth scroll — butter-smooth momentum scrolling

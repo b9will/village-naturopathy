@@ -17,12 +17,12 @@ ICONS = {
 def nav_html():
     return f'''  <header class="site-header">
       <nav class="nav" id="nav" aria-label="Primary">
-        <a class="brand" href="{REL}index.html" aria-label="Village Naturopathy home"><img src="{REL}assets/images/logo-full-white.png" alt="Village Naturopathy" height="36"></a>
+        <a class="brand" href="{REL}index.html" aria-label="Village Naturopathy home"><img src="{REL}assets/images/village-logo-white.png" alt="Village Naturopathy" height="36"></a>
         <ul class="nav-links">
           <li><a href="{REL}about.html">About</a></li>
           <li><a href="{REL}services.html">Services</a></li>
           <li><a href="{REL}journal.html">Journal</a></li>
-          <li><a href="{REL}contact.html">Contact</a></li>
+          <li><a href="{REL}resources.html">Programs</a></li>
         </ul>
         <a class="btn btn--warm btn--sm nav-cta" href="{REL}book.html">Book now</a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Toggle menu">
@@ -78,7 +78,7 @@ def footer_html():
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <span class="brand"><img src="{REL}assets/images/logo-full-black.png" alt="Village Naturopathy" height="128"></span>
+          <span class="brand"><img src="{REL}assets/images/village-logo-black.png" alt="Village Naturopathy" height="128"></span>
           <p>Root-cause naturopathic care for women navigating stress, hormones, and everything in between.</p>
           <div class="footer-social">
             <a href="https://www.facebook.com/villagenaturopathy" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
@@ -95,7 +95,7 @@ def footer_html():
           <a href="{REL}services.html">Services</a>
           <a href="{REL}conditions.html">Conditions Treated</a>
           <a href="{REL}fees.html">Fees</a>
-          <a href="https://villagenaturopathy.fullscript.com" target="_blank" rel="noopener noreferrer">Fullscript</a>
+          <a href="https://ca.fullscript.com/welcome/villagenaturopathy/store-start" target="_blank" rel="noopener noreferrer">Fullscript</a>
           <a href="{REL}careers.html">Careers</a>
         </div>
         <div class="footer-col">
