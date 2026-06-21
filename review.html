@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Website Review — Village Naturopathy</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preload" href="assets/fonts/ClashGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'ClashGrotesk';
+      src: url('assets/fonts/ClashGrotesk-Variable.woff2') format('woff2-variations');
+      font-weight: 200 700;
+      font-display: swap;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    :root {
+      --sage: #6F7A66; --sage-700: #434B3D; --sage-900: #2C3327;
+      --cream: #F6F3EE; --cream-50: #FAF9F6;
+      --ink: #1A1A18; --text-body: #3A3A37; --text-muted: #544E44;
+      --text-faint: #8C8577; --border: #E0DDD7;
+      --warm: #C47A5A; --radius: 12px;
+    }
+    body {
+      font-family: 'ClashGrotesk', system-ui, -apple-system, sans-serif;
+      background: var(--cream); color: var(--text-body);
+      line-height: 1.5; -webkit-font-smoothing: antialiased;
+    }
+    .layout {
+      display: grid; grid-template-columns: 340px 1fr;
+      height: 100dvh; overflow: hidden;
+    }
+    .sidebar {
+      background: #fff; border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .sidebar-header {
+      padding: 24px 20px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-header h1 {
+      font-size: 18px; font-weight: 600; color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .sidebar-header p {
+      font-size: 13px; color: var(--text-faint); line-height: 1.4;
+    }
+    .sidebar-controls {
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex; gap: 8px;
+    }
+    .viewport-btn {
+      font-family: inherit; font-size: 12px; font-weight: 500;
+      padding: 6px 14px; border-radius: 100px;
+      border: 1px solid var(--border); background: #fff;
+      color: var(--text-muted); cursor: pointer;
+      transition: all 150ms ease;
+    }
+    .viewport-btn:hover { border-color: var(--sage); color: var(--sage-700); }
+    .viewport-btn.active {
+      background: var(--sage-700); color: #fff; border-color: var(--sage-700);
+    }
+    .page-list {
+      flex: 1; overflow-y: auto; padding: 8px 0;
+    }
+    .page-list::-webkit-scrollbar { width: 4px; }
+    .page-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    .section-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--text-faint);
+      padding: 16px 20px 6px; user-select: none;
+    }
+    .page-link {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 20px; cursor: pointer;
+      transition: background 120ms ease;
+      text-decoration: none; color: var(--text-body);
+      font-size: 14px; border: none; background: none; width: 100%;
+      text-align: left; font-family: inherit;
+    }
+    .page-link:hover { background: var(--cream-50); }
+    .page-link.active { background: var(--cream); font-weight: 500; color: var(--ink); }
+    .page-link .status {
+      width: 8px; height: 8px; border-radius: 50%;
+      border: 1.5px solid var(--border); flex-shrink: 0;
+      transition: all 150ms ease;
+    }
+    .page-link .status.reviewed {
+      background: var(--sage); border-color: var(--sage);
+    }
+    .page-link .new-tab {
+      margin-left: auto; opacity: 0; color: var(--text-faint);
+      font-size: 12px; flex-shrink: 0; padding: 2px;
+      transition: opacity 120ms ease;
+    }
+    .page-link:hover .new-tab { opacity: 1; }
+    .page-count {
+      padding: 12px 20px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-faint);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .page-count button {
+      font-family: inherit; font-size: 11px; font-weight: 500;
+      padding: 4px 12px; border-radius: 100px;
+      border: 1px solid var(--border); background: #fff;
+      color: var(--text-muted); cursor: pointer;
+    }
+    .page-count button:hover { border-color: var(--warm); color: var(--warm); }
+    .preview-area {
+      display: flex; flex-direction: column; overflow: hidden;
+      background: var(--cream-50);
+    }
+    .preview-bar {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 20px; background: #fff;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px; color: var(--text-muted); min-height: 44px;
+    }
+    .preview-bar .url {
+      flex: 1; font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px; color: var(--text-faint);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .preview-bar a {
+      color: var(--sage); font-size: 12px; font-weight: 500;
+      text-decoration: none; white-space: nowrap;
+    }
+    .preview-bar a:hover { text-decoration: underline; }
+    .preview-frame {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+    }
+    .preview-frame iframe {
+      width: 100%; height: 100%; border: none;
+      background: #fff; transition: max-width 300ms ease;
+    }
+    .preview-frame.mobile iframe { max-width: 390px; box-shadow: 0 0 0 1px var(--border); border-radius: 8px; }
+    .preview-frame.tablet iframe { max-width: 768px; box-shadow: 0 0 0 1px var(--border); border-radius: 8px; }
+    .preview-frame.desktop iframe { max-width: 100%; }
+    .preview-empty {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      flex: 1; gap: 12px; color: var(--text-faint); font-size: 15px;
+    }
+    .preview-empty svg { width: 48px; height: 48px; opacity: 0.3; }
+    .notes-panel {
+      border-top: 1px solid var(--border); background: #fff;
+      padding: 12px 20px; display: flex; gap: 8px; align-items: flex-start;
+    }
+    .notes-panel textarea {
+      flex: 1; font-family: inherit; font-size: 13px;
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 8px 12px; resize: none; height: 60px;
+      color: var(--text-body); background: var(--cream-50);
+      transition: border-color 150ms ease;
+    }
+    .notes-panel textarea:focus { outline: none; border-color: var(--sage); }
+    .notes-panel textarea::placeholder { color: var(--text-faint); }
+    .notes-panel button {
+      font-family: inherit; font-size: 12px; font-weight: 500;
+      padding: 8px 16px; border-radius: 8px;
+      border: none; background: var(--sage-700); color: #fff;
+      cursor: pointer; white-space: nowrap; align-self: flex-end;
+      transition: background 150ms ease;
+    }
+    .notes-panel button:hover { background: var(--sage-900); }
+    .saved-notes {
+      max-height: 120px; overflow-y: auto; padding: 0 20px 12px;
+      background: #fff; border-top: 1px solid var(--cream);
+    }
+    .saved-note {
+      font-size: 12px; color: var(--text-body); padding: 6px 0;
+      border-bottom: 1px solid var(--cream); display: flex; gap: 8px;
+      align-items: flex-start;
+    }
+    .saved-note .note-page {
+      font-weight: 500; color: var(--sage-700); white-space: nowrap;
+      min-width: 80px;
+    }
+    .saved-note .note-text { flex: 1; }
+    .saved-note .note-delete {
+      color: var(--text-faint); cursor: pointer; font-size: 11px;
+      border: none; background: none; font-family: inherit; padding: 0;
+    }
+    .saved-note .note-delete:hover { color: var(--warm); }
+    .export-bar {
+      padding: 8px 20px; background: #fff;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: flex-end; gap: 8px;
+    }
+    .export-bar button {
+      font-family: inherit; font-size: 12px; font-weight: 500;
+      padding: 6px 14px; border-radius: 100px;
+      border: 1px solid var(--border); background: #fff;
+      color: var(--text-muted); cursor: pointer;
+    }
+    .export-bar button:hover { border-color: var(--sage); color: var(--sage-700); }
+    @media (max-width: 800px) {
+      .layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+      .sidebar { max-height: 45dvh; }
+      .preview-frame.mobile iframe,
+      .preview-frame.tablet iframe { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1>Website Review</h1>
+        <p>Click any page to preview it. Use the circles to mark pages as reviewed. Notes are saved to your browser.</p>
+      </div>
+      <div class="sidebar-controls">
+        <button class="viewport-btn active" data-viewport="desktop">Desktop</button>
+        <button class="viewport-btn" data-viewport="tablet">Tablet</button>
+        <button class="viewport-btn" data-viewport="mobile">Mobile</button>
+      </div>
+      <div class="page-list" id="page-list"></div>
+      <div class="page-count" id="page-count">
+        <span id="count-text"></span>
+        <button id="reset-btn">Reset all</button>
+      </div>
+    </aside>
+    <div class="preview-area">
+      <div class="preview-bar">
+        <span id="preview-title">Select a page</span>
+        <span class="url" id="preview-url"></span>
+        <a id="preview-open" href="#" target="_blank" style="display:none">Open in new tab ↗</a>
+      </div>
+      <div class="preview-frame desktop" id="preview-frame">
+        <div class="preview-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <span>Select a page from the sidebar to preview</span>
+        </div>
+      </div>
+      <div class="notes-panel">
+        <textarea id="note-input" placeholder="Add a note about this page..."></textarea>
+        <button id="save-note-btn">Save note</button>
+      </div>
+      <div class="saved-notes" id="saved-notes"></div>
+      <div class="export-bar">
+        <button id="copy-notes-btn">Copy all notes</button>
+        <button id="export-notes-btn">Download notes</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var PAGES = [
+      { section: "Main Pages", title: "Home", url: "./" },
+      { section: "Main Pages", title: "About", url: "about.html" },
+      { section: "Main Pages", title: "Services", url: "services.html" },
+      { section: "Main Pages", title: "Conditions Treated", url: "conditions.html" },
+      { section: "Main Pages", title: "Journal", url: "journal.html" },
+      { section: "Main Pages", title: "Contact", url: "contact.html" },
+      { section: "Main Pages", title: "Book Now", url: "book.html" },
+      { section: "Main Pages", title: "Fees", url: "fees.html" },
+      { section: "Main Pages", title: "Resources", url: "resources.html" },
+      { section: "Main Pages", title: "Careers", url: "careers.html" },
+      { section: "Main Pages", title: "Privacy Policy", url: "privacy.html" },
+      { section: "Main Pages", title: "404 Page", url: "404.html" },
+      { section: "Service Pages", title: "Stress & Anxiety", url: "services/stress-anxiety/" },
+      { section: "Service Pages", title: "Hormone Balancing", url: "services/hormone-balancing/" },
+      { section: "Service Pages", title: "Gut Health", url: "services/gut-health/" },
+      { section: "Service Pages", title: "Mental Health & Counselling", url: "services/mental-health-counselling/" },
+      { section: "Condition Pages", title: "Stress, Anxiety & Nervous System", url: "conditions/stress-anxiety-nervous-system/" },
+      { section: "Condition Pages", title: "Hormonal Imbalances & Women's Health", url: "conditions/hormonal-imbalances-womens-health/" },
+      { section: "Condition Pages", title: "Digestive & Gut Health", url: "conditions/digestive-gut-health/" },
+      { section: "Condition Pages", title: "Fatigue, Sleep & Energy", url: "conditions/fatigue-sleep-energy/" },
+      { section: "Condition Pages", title: "Mental Health & Emotional Wellbeing", url: "conditions/mental-health-emotional-wellbeing/" },
+      { section: "Condition Pages", title: "Thyroid & Autoimmune", url: "conditions/thyroid-autoimmune/" },
+      { section: "Condition Pages", title: "Skin Conditions & General Wellness", url: "conditions/skin-conditions-general-wellness/" },
+      { section: "Journal Articles", title: "Know Your Cycle: The Follicular Phase", url: "all-articles/2018/2/5/know-your-cycle-the-follicular-phase/" },
+      { section: "Journal Articles", title: "Foundations of Health: Stress", url: "all-articles/2018/1/8/foundations-of-health-stress/" },
+      { section: "Journal Articles", title: "The Brain and the Belly", url: "all-articles/2017/12/18/the-brain-and-the-belly-how-our-gut-health-impacts-mood-and-more/" },
+      { section: "Journal Articles", title: "Mindfulness for Non-Meditators", url: "all-articles/2018/10/15/mindfulness-for-those-who-dont-like-meditation-and-why-you-want-to-start-today/" },
+      { section: "Journal Articles", title: "Eating Mindfully", url: "all-articles/2018/10/4/eating-mindfully-fight-or-flight-vs-rest-and-digest/" },
+      { section: "Journal Articles", title: "The Healthy Ageing Brain", url: "all-articles/2018/3/6/the-healthy-ageing-brain/" },
+      { section: "Journal Articles", title: "Acupuncture 101", url: "all-articles/2018/1/3/acupuncture-101-getting-to-know-acu/" },
+      { section: "Journal Articles", title: "Hooter Health: Breast Awareness", url: "all-articles/2017/12/4/hooter-health-breast-awareness-for-cancer-prevention/" },
+      { section: "Journal Articles", title: "Activated Charcoal & the Detox Conspiracy", url: "all-articles/2017/12/4/acdc-activated-charcoal-the-detox-conspiracy/" },
+      { section: "Journal Articles", title: "5 Easy Steps for Boosting Brain Power", url: "all-articles/2017/10/15/5-easy-steps-for-boosting-brain-power/" },
+      { section: "Journal Articles", title: "DIY Face Masks", url: "all-articles/2017/10/15/facial-fads-4-diy-face-masks-already-in-your-kitchen/" },
+      { section: "Journal Articles", title: "Navigating Acne In Adulthood", url: "all-articles/2017/10/15/whats-poppin-navigating-acne-in-adulthood/" },
+      { section: "Journal Articles", title: "Fertility Awareness Method", url: "all-articles/2017/10/10/fertility-awareness-method-fam/" },
+      { section: "Journal Articles", title: "The Minds of Men", url: "all-articles/2017/10/10/the-minds-of-men/" },
+      { section: "Journal Articles", title: "To Gluten or Not to Gluten", url: "all-articles/2017/10/10/to-gluten-or-not-to-gluten-is-that-the-question/" },
+      { section: "Journal Articles", title: "Deodorant Do's and Don'ts", url: "all-articles/2017/10/10/under-armour-the-dos-and-donts-of-deodorant/" },
+      { section: "Journal Articles", title: "Why You Need Vitamin D", url: "all-articles/2017/10/10/winter-woes-why-you-need-vitamin-d/" },
+      { section: "Journal Articles", title: "Clean Up Your Sleep", url: "all-articles/2017/9/22/clean-up-your-sleep/" },
+      { section: "Journal Articles", title: "The Impact of Stress on Immunity", url: "all-articles/2017/9/22/the-s-word-the-impact-of-stress-on-your-immune-system/" },
+      { section: "Journal Articles", title: "Concussions: The Low-Down", url: "all-articles/2017/9/22/heads-up-the-low-down-on-concussions/" },
+      { section: "Journal Articles", title: "Sunscreen Consumer Guide", url: "all-articles/2017/9/19/sun-smart-a-practical-guide-for-sunscreen-consumers/" },
+      { section: "Journal Articles", title: "Detoxification: Supporting Elimination", url: "all-articles/2017/9/19/detoxification-series-part-2-5-ways-to-support-elimination-in-the-body/" },
+      { section: "Recipes", title: "Coconut & Strawberry Overnight Oats", url: "all-recipes/2017/9/18/coconut-strawberry-overnight-oats/" },
+      { section: "Recipes", title: "Avocado Mousse", url: "all-recipes/2017/9/19/avocado-mousse/" },
+      { section: "Recipes", title: "Buffalo Cauliflower Tacos", url: "all-recipes/2017/9/19/buffalo-cauliflower-tacos/" },
+      { section: "Recipes", title: "Eat Yo Greens Soup", url: "all-recipes/2017/9/19/eat-yo-greens-soup/" },
+      { section: "Recipes", title: "Fall Fruit and Spice Bake", url: "all-recipes/2017/9/19/fall-fruit-and-spice-bake/" },
+      { section: "Recipes", title: "White Peach Tea Sangria", url: "all-recipes/2017/9/19/white-peach-tea-sangria/" },
+      { section: "Booking", title: "Booking Form", url: "booking.html" }
+    ];
+
+    var STORAGE_KEY = "vn-review";
+    var state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"reviewed":[],"notes":[]}');
+    var currentUrl = null;
+
+    function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+    function isReviewed(url) { return state.reviewed.indexOf(url) !== -1; }
+
+    function toggleReviewed(url) {
+      var i = state.reviewed.indexOf(url);
+      if (i === -1) state.reviewed.push(url);
+      else state.reviewed.splice(i, 1);
+      save();
+      renderList();
+      updateCount();
+    }
+
+    function renderList() {
+      var list = document.getElementById("page-list");
+      list.innerHTML = "";
+      var lastSection = "";
+      PAGES.forEach(function (page) {
+        if (page.section !== lastSection) {
+          var label = document.createElement("div");
+          label.className = "section-label";
+          label.textContent = page.section;
+          list.appendChild(label);
+          lastSection = page.section;
+        }
+        var btn = document.createElement("button");
+        btn.className = "page-link" + (currentUrl === page.url ? " active" : "");
+        btn.innerHTML =
+          '<span class="status' + (isReviewed(page.url) ? " reviewed" : "") + '"></span>' +
+          '<span>' + page.title + '</span>' +
+          '<span class="new-tab">↗</span>';
+        btn.addEventListener("click", function (e) {
+          if (e.target.closest(".status")) {
+            toggleReviewed(page.url);
+            return;
+          }
+          if (e.target.closest(".new-tab")) {
+            window.open(page.url, "_blank");
+            return;
+          }
+          loadPreview(page);
+        });
+        list.appendChild(btn);
+      });
+    }
+
+    function loadPreview(page) {
+      currentUrl = page.url;
+      var frame = document.getElementById("preview-frame");
+      frame.innerHTML = '<iframe src="' + page.url + '" title="Preview: ' + page.title + '"></iframe>';
+      document.getElementById("preview-title").textContent = page.title;
+      document.getElementById("preview-url").textContent = page.url;
+      var openLink = document.getElementById("preview-open");
+      openLink.href = page.url;
+      openLink.style.display = "";
+      renderList();
+      renderNotes();
+    }
+
+    function updateCount() {
+      var total = PAGES.length;
+      var reviewed = state.reviewed.length;
+      document.getElementById("count-text").textContent =
+        reviewed + " of " + total + " reviewed";
+    }
+
+    // Viewport controls
+    document.querySelectorAll(".viewport-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".viewport-btn").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        var frame = document.getElementById("preview-frame");
+        frame.className = "preview-frame " + btn.dataset.viewport;
+      });
+    });
+
+    // Notes
+    function renderNotes() {
+      var container = document.getElementById("saved-notes");
+      if (!state.notes.length) { container.innerHTML = ""; return; }
+      container.innerHTML = state.notes.map(function (n, i) {
+        return '<div class="saved-note">' +
+          '<span class="note-page">' + n.page + '</span>' +
+          '<span class="note-text">' + n.text + '</span>' +
+          '<button class="note-delete" data-index="' + i + '">remove</button>' +
+          '</div>';
+      }).join("");
+      container.querySelectorAll(".note-delete").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          state.notes.splice(parseInt(btn.dataset.index), 1);
+          save(); renderNotes();
+        });
+      });
+    }
+
+    document.getElementById("save-note-btn").addEventListener("click", function () {
+      var input = document.getElementById("note-input");
+      var text = input.value.trim();
+      if (!text) return;
+      var pageName = currentUrl
+        ? PAGES.find(function (p) { return p.url === currentUrl; }).title
+        : "General";
+      state.notes.push({ page: pageName, text: text, url: currentUrl || "" });
+      input.value = "";
+      save(); renderNotes();
+    });
+
+    document.getElementById("note-input").addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        document.getElementById("save-note-btn").click();
+      }
+    });
+
+    document.getElementById("copy-notes-btn").addEventListener("click", function () {
+      if (!state.notes.length) return;
+      var text = "Village Naturopathy — Website Review Notes\n" +
+        "Generated: " + new Date().toLocaleDateString() + "\n" +
+        "─".repeat(40) + "\n\n" +
+        state.notes.map(function (n) { return "• [" + n.page + "] " + n.text; }).join("\n");
+      navigator.clipboard.writeText(text);
+      this.textContent = "Copied!";
+      var btn = this;
+      setTimeout(function () { btn.textContent = "Copy all notes"; }, 1500);
+    });
+
+    document.getElementById("export-notes-btn").addEventListener("click", function () {
+      if (!state.notes.length) return;
+      var text = "Village Naturopathy — Website Review Notes\n" +
+        "Generated: " + new Date().toLocaleDateString() + "\n" +
+        "Reviewed: " + state.reviewed.length + " of " + PAGES.length + " pages\n\n" +
+        state.notes.map(function (n) { return "• [" + n.page + "] " + n.text; }).join("\n") +
+        "\n\n--- Reviewed pages ---\n" +
+        state.reviewed.map(function (url) {
+          var p = PAGES.find(function (pg) { return pg.url === url; });
+          return "✓ " + (p ? p.title : url);
+        }).join("\n");
+      var blob = new Blob([text], { type: "text/plain" });
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "village-naturopathy-review-" + new Date().toISOString().slice(0, 10) + ".txt";
+      a.click();
+    });
+
+    document.getElementById("reset-btn").addEventListener("click", function () {
+      if (!confirm("Reset all reviewed statuses and notes?")) return;
+      state = { reviewed: [], notes: [] };
+      save(); renderList(); updateCount(); renderNotes();
+    });
+
+    renderList();
+    updateCount();
+    renderNotes();
+  })();
+  </script>
+</body>
+</html>
