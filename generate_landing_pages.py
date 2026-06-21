@@ -17,7 +17,7 @@ ICONS = {
 def nav_html():
     return f'''  <header class="site-header">
       <nav class="nav" id="nav" aria-label="Primary">
-        <a class="brand" href="{REL}" aria-label="Village Naturopathy home"><img src="{REL}assets/images/logo-full-white.png" alt="Village Naturopathy" height="36"></a>
+        <a class="brand" href="{REL}index.html" aria-label="Village Naturopathy home"><img src="{REL}assets/images/logo-full-white.png" alt="Village Naturopathy" height="36"></a>
         <ul class="nav-links">
           <li><a href="{REL}about.html">About</a></li>
           <li><a href="{REL}services.html">Services</a></li>
