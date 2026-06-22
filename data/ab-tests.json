@@ -1,0 +1,15 @@
+{
+  "hero-headline": {
+    "variants": [
+      "Root-cause care for women navigating stress, hormones, and everything in between.",
+      "Feel like yourself again. Naturopathic care for women who refuse to settle."
+    ],
+    "weights": [50, 50],
+    "active": false
+  },
+  "hero-cta": {
+    "variants": ["Request a consultation", "Book your discovery call"],
+    "weights": [50, 50],
+    "active": false
+  }
+}

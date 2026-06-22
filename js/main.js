@@ -656,6 +656,33 @@
     };
     document.head.appendChild(s);
   }
+  // ---- A/B Testing (config-driven) ----
+  fetch("data/ab-tests.json")
+    .then(function (r) { return r.json(); })
+    .then(function (tests) {
+      Object.keys(tests).forEach(function (testName) {
+        var test = tests[testName];
+        if (!test.active) return;
+        var el = document.querySelector('[data-ab="' + testName + '"]');
+        if (!el || !test.variants.length) return;
+
+        var totalWeight = test.weights.reduce(function (a, b) { return a + b; }, 0);
+        var rand = Math.random() * totalWeight;
+        var cumulative = 0;
+        var chosen = 0;
+        for (var i = 0; i < test.weights.length; i++) {
+          cumulative += test.weights[i];
+          if (rand < cumulative) { chosen = i; break; }
+        }
+
+        el.textContent = test.variants[chosen];
+        if (window.plausible) {
+          plausible("AB_Variant", { props: { test: testName, variant: String(chosen) } });
+        }
+      });
+    })
+    .catch(function () {});
+
   // ---- Testimonials (loaded from JSON) ----
   var testimonialGrid = document.getElementById("testimonial-grid");
   if (testimonialGrid) {
