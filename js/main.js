@@ -194,7 +194,7 @@
           formEl.setAttribute("hidden", "");
           var successEl = document.getElementById(successId);
           if (successEl) successEl.removeAttribute("hidden");
-          if (window.plausible) plausible(eventName);
+          vnEvent(eventName);
         } else {
           throw new Error("Server error");
         }
@@ -457,35 +457,40 @@
   }
 
   function loadAnalytics() {
-    if (document.getElementById("plausible-script")) return;
-    var domainMeta = document.querySelector('meta[name="plausible-domain"]');
-    var domain = domainMeta ? domainMeta.getAttribute("content") : "villagenaturopathy.com";
+    if (document.getElementById("ga4-script")) return;
+    var gaIdMeta = document.querySelector('meta[name="ga-id"]');
+    if (!gaIdMeta) return;
+    var gaId = gaIdMeta.getAttribute("content");
+    if (!gaId || gaId === "G-XXXXXXXXXX") return;
+
     var s = document.createElement("script");
-    s.id = "plausible-script";
-    s.defer = true;
-    s.setAttribute("data-domain", domain);
-    s.src = "https://plausible.io/js/script.js";
+    s.id = "ga4-script";
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + gaId;
     document.head.appendChild(s);
 
-    window.plausible = window.plausible || function () {
-      (window.plausible.q = window.plausible.q || []).push(arguments);
-    };
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    gtag("js", new Date());
+    gtag("config", gaId);
 
     attachConversionEvents();
     loadCoreWebVitals();
   }
 
+  function vnEvent(name, params) {
+    if (window.gtag) gtag("event", name, params || {});
+  }
+
   function attachConversionEvents() {
     document.querySelectorAll('a[href*="book.html"]').forEach(function (link) {
-      link.addEventListener("click", function () {
-        if (window.plausible) plausible("CTA_Book");
-      });
+      link.addEventListener("click", function () { vnEvent("CTA_Book"); });
     });
 
     var modalObs = new MutationObserver(function (mutations) {
       mutations.forEach(function (m) {
         if (m.target.classList && m.target.classList.contains("open")) {
-          if (window.plausible) plausible("Modal_BookingOpen");
+          vnEvent("Modal_BookingOpen");
         }
       });
     });
@@ -499,9 +504,7 @@
     s.onload = function () {
       if (!window.webVitals) return;
       function sendCWV(metric) {
-        if (window.plausible) {
-          plausible("CWV_" + metric.name, { props: { value: Math.round(metric.value), rating: metric.rating } });
-        }
+        vnEvent("CWV_" + metric.name, { value: Math.round(metric.value), rating: metric.rating });
       }
       webVitals.onCLS(sendCWV);
       webVitals.onINP(sendCWV);
@@ -532,7 +535,7 @@
     banner.setAttribute("aria-label", "Cookie consent");
     banner.innerHTML =
       '<div class="cookie-banner-inner">' +
-        '<p class=”cookie-banner-text”>We use privacy-respecting analytics to understand how visitors use this site. No personal data is collected. By clicking “Accept all,” you consent to anonymous usage tracking. <a href=”privacy.html”>Privacy policy</a></p>' +
+        '<p class=”cookie-banner-text”>We use cookies and analytics to understand how visitors use this site. By clicking “Accept all,” you consent to our use of Google Analytics. <a href=”privacy.html”>Privacy policy</a></p>' +
         '<div class="cookie-banner-actions">' +
           '<button class="btn--cookie-outline" id="cookie-reject">Essential only</button>' +
           '<button class="btn--cookie-outline" id="cookie-prefs-btn">Manage preferences</button>' +
@@ -676,9 +679,7 @@
         }
 
         el.textContent = test.variants[chosen];
-        if (window.plausible) {
-          plausible("AB_Variant", { props: { test: testName, variant: String(chosen) } });
-        }
+        vnEvent("AB_Variant", { test: testName, variant: String(chosen) });
       });
     })
     .catch(function () {});

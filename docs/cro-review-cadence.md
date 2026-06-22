@@ -2,7 +2,7 @@
 
 ## Monthly Review (15 minutes)
 
-Check Plausible dashboard for:
+Check GA4 dashboard for:
 - **Total pageviews** — trending up, flat, or down?
 - **Top pages** — which pages get the most traffic?
 - **Referral sources** — where are visitors coming from?
@@ -30,7 +30,7 @@ Check Plausible dashboard for:
 2. Set `"active": true` on the test you want to run
 3. Commit and push — the test starts immediately
 4. Let it run for at least 2 weeks or 200 visits (whichever is longer)
-5. Check Plausible for `AB_Variant` events — compare conversion rates between variants
+5. Check GA4 for `AB_Variant` events — compare conversion rates between variants
 6. Set the winning variant as the default text and set `"active": false`
 
 ### How to interpret results
@@ -47,7 +47,7 @@ Check Plausible dashboard for:
 
 ## Core Web Vitals
 
-Check quarterly via Plausible CWV events:
+Check quarterly via GA4 CWV events:
 - **LCP** (Largest Contentful Paint) — target < 2.5s
 - **INP** (Interaction to Next Paint) — target < 200ms
 - **CLS** (Cumulative Layout Shift) — target < 0.1

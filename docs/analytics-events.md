@@ -1,7 +1,7 @@
 # Analytics Events — Village Naturopathy
 
-Provider: [Plausible Analytics](https://plausible.io) (privacy-respecting, cookieless)
-Gated behind cookie consent "analytics" toggle for PHIPA transparency.
+Provider: Google Analytics 4 (GA4)
+Gated behind cookie consent "analytics" toggle — scripts only load after user accepts.
 
 ## Conversion Events
 
@@ -30,8 +30,8 @@ Gated behind cookie consent "analytics" toggle for PHIPA transparency.
 
 ## Implementation
 
-- Plausible script loaded dynamically by `loadAnalytics()` in `js/main.js`
+- GA4 script loaded dynamically by `loadAnalytics()` in `js/main.js`
 - Only loads after user accepts analytics in cookie consent
-- Custom events use `plausible('EventName', { props: { ... } })`
-- web-vitals library loaded from CDN after Plausible initializes
-- Domain configured via `<meta name="plausible-domain">` tag in each page
+- Custom events use `gtag('event', 'EventName', { ... })` via helper `vnEvent()`
+- web-vitals library loaded from CDN after GA4 initializes
+- Measurement ID configured via `<meta name="ga-id">` tag in each page (replace `G-XXXXXXXXXX` with real ID)
