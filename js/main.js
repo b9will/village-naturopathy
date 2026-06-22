@@ -585,4 +585,34 @@
     };
     document.head.appendChild(s);
   }
+  // ---- Testimonials (loaded from JSON) ----
+  var testimonialGrid = document.getElementById("testimonial-grid");
+  if (testimonialGrid) {
+    fetch("data/testimonials.json")
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || !data.length) {
+          testimonialGrid.closest("section").style.display = "none";
+          return;
+        }
+        testimonialGrid.innerHTML = data.map(function (t) {
+          var stars = "";
+          for (var i = 0; i < (t.rating || 5); i++) stars += "★";
+          return '<div class="testimonial-card">' +
+            '<span class="testimonial-stars">' + stars + '</span>' +
+            '<p class="testimonial-quote">' + t.quote + '</p>' +
+            '<div class="testimonial-meta">' +
+            '<span class="testimonial-name">' + t.name + '</span>' +
+            '<span class="testimonial-detail">' + t.location + ' &middot; ' + t.condition + '</span>' +
+            '</div></div>';
+        }).join("");
+        if (observer) {
+          testimonialGrid.classList.add("reveal-stagger");
+          observer.observe(testimonialGrid);
+        }
+      })
+      .catch(function () {
+        testimonialGrid.closest("section").style.display = "none";
+      });
+  }
 })();

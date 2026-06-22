@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Sarah M.",
+    "location": "Toronto, ON",
+    "condition": "Stress & hormones",
+    "quote": "After years of being told my symptoms were 'just stress,' Dr. Heather actually listened. Within three months my energy was back and my cycles regulated for the first time in years.",
+    "rating": 5
+  },
+  {
+    "name": "Emily R.",
+    "location": "London, UK",
+    "condition": "Gut health",
+    "quote": "I'd tried everything for my IBS — elimination diets, supplements, you name it. Working with Village Naturopathy was the first time someone looked at the full picture. The bloating is gone.",
+    "rating": 5
+  },
+  {
+    "name": "Jessica T.",
+    "location": "Ottawa, ON",
+    "condition": "Anxiety & burnout",
+    "quote": "The combination of naturopathic medicine and counselling was exactly what I needed. I finally have tools that actually work, not just another prescription.",
+    "rating": 5
+  }
+]
