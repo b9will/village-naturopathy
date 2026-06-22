@@ -383,12 +383,126 @@ ul { margin: 0; padding: 0; list-style: none; }
 .card-actions { display: flex; gap: 8px; margin-top: auto; padding-top: var(--space-xs); flex-wrap: wrap; }
 
 /* ---- Program cards ---- */
+
+/* Feature card — flagship program (horizontal hero layout) */
+.program-feature {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 0;
+  background: #fff; border: 1px solid var(--border-hairline);
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 2px 6px rgba(27,27,27,0.06);
+  transition: box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  margin-bottom: clamp(20px, 3vw, 32px);
+}
+.program-feature:hover { box-shadow: var(--shadow-lg); border-color: var(--sage); transform: translateY(-4px); }
+.program-feature-panel {
+  position: relative; isolation: isolate; overflow: hidden;
+  background: linear-gradient(160deg, var(--sage-900) 0%, var(--sage-700) 100%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: clamp(24px, 3vw, 40px);
+  min-height: 320px;
+}
+.program-feature-panel::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: url('../assets/images/texture-asfalt.png') repeat;
+  opacity: 0.3; pointer-events: none;
+}
+.program-feature-panel::after {
+  content: attr(data-number);
+  position: absolute; top: -0.15em; right: -0.05em; z-index: 0;
+  font-family: var(--font-display); font-size: clamp(120px, 16vw, 200px);
+  font-weight: 300; line-height: 1; color: rgba(246,243,238,0.06);
+  pointer-events: none;
+}
+.program-feature-panel h3 {
+  position: relative; z-index: 1;
+  font-size: clamp(26px, 3.2vw, 36px); font-weight: 380; line-height: 1.15;
+  color: var(--cream);
+}
+.program-feature-panel .badge {
+  position: relative; z-index: 1;
+  margin-top: var(--space-sm); align-self: flex-start;
+  background: rgba(246,243,238,0.15); color: var(--cream);
+}
+.program-feature-body {
+  padding: clamp(24px, 3vw, 40px);
+  display: flex; flex-direction: column; justify-content: center; gap: var(--space-sm);
+}
+.program-feature-body .eyebrow { color: var(--highlight); }
+.program-feature-body h3 { font-size: clamp(22px, 2.5vw, 28px); line-height: 1.2; }
+.program-feature-body p { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+.program-feature-body .btn { align-self: flex-start; margin-top: var(--space-xs); }
+.program-pillars {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  margin-top: var(--space-xs);
+}
+.program-pillar {
+  font-family: var(--font-sans); font-size: 13px; color: var(--text-muted);
+  padding: 8px 0; border-bottom: 1px solid var(--border-hairline);
+  display: flex; align-items: center; gap: 6px;
+}
+.program-pillar::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--highlight); flex-shrink: 0;
+}
+
+/* Supporting program cards — enhanced media */
 .program-card-media {
-  aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center;
-  padding: var(--space-lg); text-align: center;
+  position: relative; isolation: isolate; overflow: hidden;
+  aspect-ratio: 4 / 3;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: clamp(20px, 2.5vw, 32px);
+}
+.program-card-media::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: url('../assets/images/texture-asfalt.png') repeat;
+  opacity: 0.2; pointer-events: none;
+}
+.program-card-media::after {
+  content: attr(data-number);
+  position: absolute; top: -0.15em; right: -0.05em; z-index: 0;
+  font-family: var(--font-display); font-size: clamp(100px, 14vw, 160px);
+  font-weight: 300; line-height: 1; color: rgba(246,243,238,0.07);
+  pointer-events: none;
 }
 .program-card-media h3 {
+  position: relative; z-index: 1;
   font-size: clamp(20px, 2.5vw, 28px); font-weight: 400; line-height: 1.2;
+  text-align: left;
+}
+.program-card-media .badge {
+  position: relative; z-index: 1; align-self: flex-end;
+}
+
+/* Program grid (2-col for supporting cards) */
+.program-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 3vw, 32px); }
+
+/* ---- Resource rows ---- */
+.resource-list {
+  max-width: 860px; margin-inline: auto;
+  border: 1px solid var(--border-hairline); border-radius: 16px;
+  background: #fff; overflow: hidden;
+  box-shadow: 0 2px 6px rgba(27,27,27,0.06);
+}
+.resource-row {
+  display: grid; grid-template-columns: auto 1fr auto;
+  gap: var(--space-md); align-items: center;
+  padding: clamp(20px, 3vw, 32px);
+  transition: background var(--dur-fast) var(--ease);
+}
+.resource-row:hover { background: var(--surface-sage); }
+.resource-row + .resource-row { border-top: 1px solid var(--border-hairline); }
+.resource-row-icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; border-radius: 50%;
+  flex-shrink: 0;
+}
+.resource-row-icon svg { width: 24px; height: 24px; }
+.resource-row-content { display: flex; flex-direction: column; gap: 4px; }
+.resource-row-content h3 { font-size: clamp(18px, 2vw, 22px); line-height: 1.25; }
+.resource-row-content p { font-size: 15px; color: var(--text-muted); line-height: 1.55; }
+.resource-row-action {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+  flex-shrink: 0;
 }
 
 /* ---- Price block ---- */
@@ -1203,6 +1317,11 @@ html.lenis, html.lenis body { height: auto; }
   .about-hero { grid-template-columns: 1fr; }
   .about-hero-media { order: -1; }
   .credentials { grid-template-columns: 1fr; }
+  .program-feature { grid-template-columns: 1fr; }
+  .program-feature-panel { min-height: 240px; }
+  .program-feature-body { padding: clamp(20px, 4vw, 40px); }
+  .conditions-block .conditions-content .btn { width: 100%; text-align: center; }
+  .conditions-block .conditions-content .btn + .btn { margin-top: 8px; }
 }
 
 @media (max-width: 768px) {
@@ -1311,6 +1430,7 @@ html.lenis, html.lenis body { height: auto; }
   .mobile-social a:hover { border-color: var(--cream); color: var(--cream); }
   /* Other mobile adjustments */
   .grid-4, .grid-2 { grid-template-columns: 1fr; }
+  .program-grid { grid-template-columns: 1fr; }
   .journal-grid-item { grid-template-columns: 1fr; }
   .journal-grid-item img { width: 100%; height: 200px; border-radius: var(--radius-sm); }
   .form-row { grid-template-columns: 1fr; }
@@ -1319,4 +1439,43 @@ html.lenis, html.lenis body { height: auto; }
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: var(--space-xs); }
   .cta-banner { min-height: 280px; border-radius: 12px; }
   .cta-banner-content { padding: var(--space-lg); }
+  .resource-row { grid-template-columns: 1fr; text-align: center; }
+  .resource-row-icon { margin-inline: auto; }
+  .resource-row-content { align-items: center; }
+  .resource-row-action { align-items: center; width: 100%; }
+  .program-pillars { grid-template-columns: 1fr; }
+
+  /* Trust bar — stack vertically */
+  .trust-bar { flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+
+  /* Feature rows — stack price below content */
+  .feature-row { flex-wrap: wrap; }
+  .feature-row-price { width: 100%; margin-top: 4px; }
+
+  /* Conditions page — full-width buttons */
+  .conditions-block .conditions-content .btn { display: block; width: 100%; text-align: center; }
+
+  /* Page hero — reduce min-height, increase padding */
+  .page-hero { min-height: 240px; }
+  .page-hero .hero-copy { padding-top: 100px; }
+
+  /* Booking / contact split — tighter on mobile */
+  .booking-form-wrap { padding: var(--space-lg) var(--gutter); }
+
+  /* Program feature — image panel shorter */
+  .program-feature-panel { min-height: 200px; }
+
+  /* Modal — more breathing room */
+  .modal { padding: var(--space-lg); max-width: 92%; }
+  .modal-option { flex-direction: column; text-align: center; gap: 10px; }
+  .modal-option-icon { margin-inline: auto; }
+
+  /* Cards — slightly less padding */
+  .card-body { padding: var(--space-sm) var(--space-sm) var(--space-md); }
+
+  /* Email in footer — break long address */
+  .footer-contact-item a { word-break: break-all; }
+
+  /* About hero media on mobile — constrain height */
+  .about-hero-media img { height: clamp(280px, 50vw, 400px); }
 }
