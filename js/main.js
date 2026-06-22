@@ -386,20 +386,59 @@
   }
 
   function loadAnalytics() {
-    if (document.getElementById("ga4-script")) return;
-    var gaId = document.querySelector('meta[name="ga-id"]');
-    if (!gaId) return;
-    var id = gaId.getAttribute("content");
-    if (!id || id === "G-XXXXXXXXXX") return;
+    if (document.getElementById("plausible-script")) return;
+    var domainMeta = document.querySelector('meta[name="plausible-domain"]');
+    var domain = domainMeta ? domainMeta.getAttribute("content") : "villagenaturopathy.com";
     var s = document.createElement("script");
-    s.id = "ga4-script";
-    s.async = true;
-    s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+    s.id = "plausible-script";
+    s.defer = true;
+    s.setAttribute("data-domain", domain);
+    s.src = "https://plausible.io/js/script.js";
     document.head.appendChild(s);
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { window.dataLayer.push(arguments); }
-    gtag("js", new Date());
-    gtag("config", id);
+
+    window.plausible = window.plausible || function () {
+      (window.plausible.q = window.plausible.q || []).push(arguments);
+    };
+
+    attachConversionEvents();
+    loadCoreWebVitals();
+  }
+
+  function attachConversionEvents() {
+    document.querySelectorAll('a[href*="book.html"]').forEach(function (link) {
+      link.addEventListener("click", function () {
+        if (window.plausible) plausible("CTA_Book");
+      });
+    });
+
+    var modalObs = new MutationObserver(function (mutations) {
+      mutations.forEach(function (m) {
+        if (m.target.classList && m.target.classList.contains("open")) {
+          if (window.plausible) plausible("Modal_BookingOpen");
+        }
+      });
+    });
+    var bookModal = document.getElementById("book-modal");
+    if (bookModal) modalObs.observe(bookModal, { attributes: true, attributeFilter: ["class"] });
+  }
+
+  function loadCoreWebVitals() {
+    var s = document.createElement("script");
+    s.src = "https://unpkg.com/web-vitals@4/dist/web-vitals.iife.js";
+    s.onload = function () {
+      if (!window.webVitals) return;
+      function sendCWV(metric) {
+        if (window.plausible) {
+          plausible("CWV_" + metric.name, { props: { value: Math.round(metric.value), rating: metric.rating } });
+        }
+      }
+      webVitals.onCLS(sendCWV);
+      webVitals.onINP(sendCWV);
+      webVitals.onLCP(sendCWV);
+      webVitals.onFCP(sendCWV);
+      webVitals.onTTFB(sendCWV);
+    };
+    document.head.appendChild(s);
   }
 
   function loadMarketing() {
@@ -422,7 +461,7 @@
     banner.setAttribute("aria-label", "Cookie consent");
     banner.innerHTML =
       '<div class="cookie-banner-inner">' +
-        '<p class="cookie-banner-text">We use cookies to improve your experience and analyse site traffic. By clicking “Accept all,” you consent to our use of cookies. <a href="privacy.html">Privacy policy</a></p>' +
+        '<p class=”cookie-banner-text”>We use privacy-respecting analytics to understand how visitors use this site. No personal data is collected. By clicking “Accept all,” you consent to anonymous usage tracking. <a href=”privacy.html”>Privacy policy</a></p>' +
         '<div class="cookie-banner-actions">' +
           '<button class="btn--cookie-outline" id="cookie-reject">Essential only</button>' +
           '<button class="btn--cookie-outline" id="cookie-prefs-btn">Manage preferences</button>' +
