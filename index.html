@@ -33,35 +33,71 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "MedicalBusiness",
-    "name": "Village Naturopathy",
-    "description": "Virtual naturopathic clinic specialising in stress, hormones, gut health and mental wellness for women.",
-    "url": "https://villagenaturopathy.com/",
-    "image": "https://villagenaturopathy.com/assets/images/hero-portrait.jpg",
-    "email": "drheather@villagenaturopathy.com",
-    "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "09:00", "closes": "17:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "09:00", "closes": "13:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "09:00", "closes": "17:00" }
-    ],
-    "medicalSpecialty": "Naturopathic",
-    "priceRange": "$$",
-    "areaServed": ["Ontario", "United Kingdom"],
-    "founder": {
-      "@type": "Person",
-      "name": "Dr. Heather Robinson",
-      "jobTitle": "Naturopathic Doctor"
-    },
-    "availableService": [
-      { "@type": "MedicalTherapy", "name": "Stress & nervous system support" },
-      { "@type": "MedicalTherapy", "name": "Hormone balancing" },
-      { "@type": "MedicalTherapy", "name": "Gut health" },
-      { "@type": "MedicalTherapy", "name": "Mental health counselling" },
-      { "@type": "MedicalTherapy", "name": "Diagnostic testing" }
-    ],
-    "sameAs": [
-      "https://www.facebook.com/villagenaturopathy",
-      "https://www.instagram.com/villagenaturopathy"
+    "@graph": [
+      {
+        "@type": "MedicalBusiness",
+        "@id": "https://villagenaturopathy.com/#clinic",
+        "name": "Village Naturopathy",
+        "description": "Virtual naturopathic clinic specialising in stress, hormones, gut health and mental wellness for women.",
+        "url": "https://villagenaturopathy.com/",
+        "image": "https://villagenaturopathy.com/assets/images/hero-portrait.jpg",
+        "email": "drheather@villagenaturopathy.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "appointments",
+          "email": "drheather@villagenaturopathy.com",
+          "availableLanguage": "English"
+        },
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "09:00", "closes": "17:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "09:00", "closes": "13:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "09:00", "closes": "17:00" }
+        ],
+        "medicalSpecialty": "Naturopathic",
+        "priceRange": "$$",
+        "areaServed": [
+          { "@type": "AdministrativeArea", "name": "Ontario", "address": { "@type": "PostalAddress", "addressCountry": "CA", "addressRegion": "ON" } },
+          { "@type": "AdministrativeArea", "name": "United Kingdom", "address": { "@type": "PostalAddress", "addressCountry": "GB" } }
+        ],
+        "founder": { "@id": "https://villagenaturopathy.com/#physician" },
+        "availableService": [
+          { "@type": "MedicalTherapy", "name": "Stress & nervous system support" },
+          { "@type": "MedicalTherapy", "name": "Hormone balancing" },
+          { "@type": "MedicalTherapy", "name": "Gut health" },
+          { "@type": "MedicalTherapy", "name": "Mental health counselling" },
+          { "@type": "MedicalTherapy", "name": "Diagnostic testing" },
+          { "@type": "MedicalTherapy", "name": "Botanical medicine" },
+          { "@type": "MedicalTherapy", "name": "Psychotherapy" },
+          { "@type": "MedicalTherapy", "name": "Nutritional counselling" }
+        ],
+        "sameAs": [
+          "https://www.facebook.com/villagenaturopathy",
+          "https://www.instagram.com/villagenaturopathy"
+        ]
+      },
+      {
+        "@type": "Physician",
+        "@id": "https://villagenaturopathy.com/#physician",
+        "name": "Dr. Heather Robinson",
+        "jobTitle": "Naturopathic Doctor",
+        "email": "drheather@villagenaturopathy.com",
+        "url": "https://villagenaturopathy.com/about.html",
+        "image": "https://villagenaturopathy.com/assets/images/heather-portrait.jpg",
+        "medicalSpecialty": "Naturopathic",
+        "worksFor": { "@id": "https://villagenaturopathy.com/#clinic" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Ottawa" },
+        "hasCredential": [
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "B.A. Psychology" },
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "professional", "name": "Naturopathic Doctor (ND)" },
+          { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "Certified HeartMath Practitioner" }
+        ],
+        "memberOf": [
+          { "@type": "Organization", "name": "College of Naturopaths of Ontario" },
+          { "@type": "Organization", "name": "Ontario Association of Naturopathic Doctors" },
+          { "@type": "Organization", "name": "Canadian Association of Naturopathic Doctors" },
+          { "@type": "Organization", "name": "Association of Naturopathic Practitioners (UK)" }
+        ]
+      }
     ]
   }
   </script>
