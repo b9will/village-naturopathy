@@ -763,6 +763,10 @@ ul { margin: 0; padding: 0; list-style: none; }
   background-repeat: no-repeat; background-position: right 2px center; background-size: 12px;
 }
 .form-textarea { resize: vertical; min-height: 100px; line-height: 1.5; }
+.form-error { font-size: 13px; color: var(--warm-deep); min-height: 0; display: block; }
+.form-group.has-error .form-input,
+.form-group.has-error .form-textarea { border-color: var(--warm-deep); }
+.form-group.has-error .form-error { margin-top: 4px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
 .form-check {
   display: inline-flex; align-items: flex-start; gap: 12px; cursor: pointer;

@@ -159,6 +159,77 @@
     });
   }
 
+  // ---- Form validation + Formspree submission ----
+  function setupFormValidation(formEl, successId, eventName) {
+    if (!formEl) return;
+
+    formEl.querySelectorAll("[required]").forEach(function (input) {
+      input.addEventListener("blur", function () { validateField(input); });
+      input.addEventListener("input", function () {
+        if (input.closest(".form-group").classList.contains("has-error")) validateField(input);
+      });
+    });
+
+    formEl.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var valid = true;
+      formEl.querySelectorAll("[required]").forEach(function (input) {
+        if (!validateField(input)) valid = false;
+      });
+      if (!valid) return;
+
+      var btn = formEl.querySelector('[type="submit"]');
+      var origText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+
+      var errorEl = formEl.querySelector(".form-submit-error");
+
+      fetch(formEl.action, {
+        method: "POST",
+        body: new FormData(formEl),
+        headers: { "Accept": "application/json" }
+      }).then(function (res) {
+        if (res.ok) {
+          formEl.setAttribute("hidden", "");
+          var successEl = document.getElementById(successId);
+          if (successEl) successEl.removeAttribute("hidden");
+          if (window.plausible) plausible(eventName);
+        } else {
+          throw new Error("Server error");
+        }
+      }).catch(function () {
+        if (errorEl) {
+          errorEl.textContent = "Something went wrong — please email us directly at drheather@villagenaturopathy.com";
+          errorEl.removeAttribute("hidden");
+        }
+        btn.disabled = false;
+        btn.textContent = origText;
+      });
+    });
+  }
+
+  function validateField(input) {
+    var group = input.closest(".form-group");
+    var errorSpan = group ? group.querySelector(".form-error") : null;
+    if (!group) return true;
+
+    if (!input.checkValidity()) {
+      group.classList.add("has-error");
+      if (errorSpan) {
+        if (input.validity.valueMissing) errorSpan.textContent = "This field is required";
+        else if (input.validity.typeMismatch) errorSpan.textContent = "Please enter a valid " + input.type;
+        else errorSpan.textContent = input.validationMessage;
+      }
+      return false;
+    }
+    group.classList.remove("has-error");
+    if (errorSpan) errorSpan.textContent = "";
+    return true;
+  }
+
+  setupFormValidation(document.getElementById("contact-form"), "contact-success", "Form_ContactSubmit");
+
   // Animated stat counters
   if ("IntersectionObserver" in window) {
     var statObserver = new IntersectionObserver(function (entries) {
