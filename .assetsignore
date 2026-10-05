@@ -1,0 +1,10 @@
+*.md
+docs/
+generate_landing_pages.py
+.github/
+wrangler.toml
+.assetsignore
+.gitignore
+.git
+.wrangler
+worker.js
