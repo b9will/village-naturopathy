@@ -1,10 +1,11 @@
-*.md
-docs/
-generate_landing_pages.py
-.github/
+/README.md
+/docs/
+*.py
+__pycache__/
 wrangler.toml
 .assetsignore
 .gitignore
 .git
 .wrangler
 worker.js
+.github/

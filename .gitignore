@@ -10,3 +10,7 @@ node_modules/
 dist/
 .cache/
 .wrangler/
+
+# Python build tooling
+__pycache__/
+*.pyc

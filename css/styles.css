@@ -646,7 +646,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* ---- Footer (bright, multi-column SEO) ---- */
 .site-footer { background: var(--cream-50); color: var(--text-body); border-top: 1px solid var(--border-hairline); }
 .footer-top {
-  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1.2fr; gap: clamp(24px, 3.5vw, 48px);
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr 1.2fr; gap: clamp(20px, 3vw, 40px);
   padding-block: clamp(56px, 8vw, 80px);
   border-bottom: 1px solid var(--border-hairline);
 }
@@ -1538,3 +1538,19 @@ html.lenis, html.lenis body { height: auto; }
   /* About hero media on mobile — constrain height */
   .about-hero-media img { height: clamp(280px, 50vw, 400px); }
 }
+
+/* ---- Oct 2026 revisions ---- */
+/* Eyebrow in image heroes: keep legible over light photography (e.g. the fatigue bedroom) */
+.page-hero .eyebrow { color: #fff; text-shadow: 0 1px 10px rgba(27, 27, 27, 0.55); }
+/* Services hero: heading was hard to read over the vase photo */
+.page-hero--readable .hero-bg img { filter: saturate(0.75) brightness(0.72) blur(1.5px); transform: scale(1.03); }
+.page-hero--readable .hero-bg::after { background: linear-gradient(180deg, rgba(44,51,39,0.7) 0%, rgba(44,51,39,0.55) 45%, rgba(44,51,39,0.75) 100%); }
+/* Footer: six columns on wide screens, last column spans on tablet */
+@media (max-width: 1100px) {
+  .footer-top { grid-template-columns: repeat(3, 1fr); row-gap: var(--space-xl); }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 900px) { .footer-top { grid-template-columns: repeat(2, 1fr); } }
+/* Inline links inside conditions lists (UK location lists) */
+.conditions-list a { color: inherit; text-decoration: underline; text-decoration-color: var(--greige); text-underline-offset: 3px; }
+.conditions-list a:hover { color: var(--accent-hover); text-decoration-color: currentColor; }

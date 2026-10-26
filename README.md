@@ -79,3 +79,17 @@ Most of this is already done; the ⚠️ items are the finishing steps that need
 ## Notes & caveats
 - **Imagery** is placeholder-grade (low-res). Swap in licensed, optimized photography before launch.
 - **Neue Haas Grotesk** is a licensed font; body text currently uses its Helvetica Neue fallback until the `.woff2` files are added.
+
+## Generated pages (Oct 2026)
+Services, conditions and the UK location pages are generated, not hand-edited:
+
+```bash
+python3 build_site.py        # regenerates /services, /conditions, /uk, og images, sitemap, robots, llms.txt
+```
+
+- Copy for services/conditions: `generate_landing_pages.py`
+- UK locations (hub, nations, cities, neighbourhoods, topic and DUTCH pages): `geo_data.py` + `generate_geo_pages.py`
+- Shared nav, footer, meta tags and schema: `site_common.py`. Bump `ASSET_V` there (and in the `?v=` query on css/js in hand-written pages) whenever `css/styles.css` or `js/main.js` change, because they are cached as immutable.
+- To add a neighbourhood: append an entry to `AREAS` in `geo_data.py`, run `build_site.py`, commit. Keep each page's local paragraph and three angles genuinely specific (see the rules at the top of `geo_data.py`).
+- Requires Python 3 with Pillow and fontTools (for the share images).
+- Hand-written pages (home, about, fees, ...) are edited directly in HTML.

@@ -22,7 +22,7 @@
     if (navLinksEl) {
       var mobileCta = document.createElement("li");
       mobileCta.className = "mobile-cta";
-      mobileCta.innerHTML = '<a class="btn btn--warm" href="book.html">Book now</a>';
+      mobileCta.innerHTML = '<a class="btn btn--warm" href="https://villagenaturopathy.janeapp.com/#/staff_member/1" target="_blank" rel="noopener noreferrer">Book now</a>';
       navLinksEl.appendChild(mobileCta);
 
       var mobileSocial = document.createElement("li");
@@ -99,53 +99,6 @@
       if (observer) observer.observe(el);
     }
   });
-
-  // Booking region modal
-  var modalHTML = '<div class="modal-overlay" id="book-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">' +
-    '<div class="modal" style="position:relative">' +
-    '<button class="modal-close" aria-label="Close" type="button">' +
-    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>' +
-    '<h2 id="modal-title">Where are you located?</h2>' +
-    '<p>Choose your region to book with the correct clinic.</p>' +
-    '<div class="modal-options">' +
-    '<a class="modal-option" href="https://villagenaturopathy.janeapp.com/locations/village-naturopathy/book#staff_member/1" target="_blank" rel="noopener noreferrer">' +
-    '<span class="modal-option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg></span>' +
-    '<span class="modal-option-text"><strong>I’m in Ontario</strong><span>Virtual naturopathic consultations</span></span></a>' +
-    '<a class="modal-option" href="https://villagenaturopathy.janeapp.com/locations/village-naturopathy-uk/book#staff_member/1" target="_blank" rel="noopener noreferrer">' +
-    '<span class="modal-option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg></span>' +
-    '<span class="modal-option-text"><strong>I’m in the UK</strong><span>Virtual naturopathic consultations</span></span></a>' +
-    '</div></div></div>';
-
-  if (!document.querySelector('.booking-split')) {
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-    var overlay = document.getElementById('book-modal');
-    var closeBtn = overlay.querySelector('.modal-close');
-
-    function openModal(e) {
-      e.preventDefault();
-      overlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      closeBtn.focus();
-    }
-    function closeModal() {
-      overlay.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    document.querySelectorAll('a[href$="book.html"]').forEach(function (link) {
-      if (!link.closest('.footer-col') && !link.closest('.footer-bottom-links') && !link.classList.contains('nav-cta')) {
-        link.addEventListener('click', openModal);
-      }
-    });
-
-    closeBtn.addEventListener('click', closeModal);
-    overlay.addEventListener('click', function (e) {
-      if (e.target === overlay) closeModal();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
-    });
-  }
 
   // Booking form — show confirmation on submit
   var form = document.getElementById("booking-form");
@@ -483,19 +436,15 @@
   }
 
   function attachConversionEvents() {
-    document.querySelectorAll('a[href*="book.html"]').forEach(function (link) {
-      link.addEventListener("click", function () { vnEvent("CTA_Book"); });
-    });
-
-    var modalObs = new MutationObserver(function (mutations) {
-      mutations.forEach(function (m) {
-        if (m.target.classList && m.target.classList.contains("open")) {
-          vnEvent("Modal_BookingOpen");
-        }
+    document.querySelectorAll('a[href*="janeapp.com"], a[href*="book.html"]').forEach(function (link) {
+      link.addEventListener("click", function () {
+        var discovery = /treatment\/36/.test(link.getAttribute("href"));
+        vnEvent(discovery ? "CTA_DiscoveryCall" : "CTA_Book", { page: location.pathname });
       });
     });
-    var bookModal = document.getElementById("book-modal");
-    if (bookModal) modalObs.observe(bookModal, { attributes: true, attributeFilter: ["class"] });
+    document.querySelectorAll('a[href^="tel:"], a[href^="mailto:"]').forEach(function (link) {
+      link.addEventListener("click", function () { vnEvent("Contact_Click", { type: link.protocol.replace(":", "") }); });
+    });
   }
 
   function loadCoreWebVitals() {
@@ -535,7 +484,7 @@
     banner.setAttribute("aria-label", "Cookie consent");
     banner.innerHTML =
       '<div class="cookie-banner-inner">' +
-        '<p class=”cookie-banner-text”>We use cookies and analytics to understand how visitors use this site. By clicking “Accept all,” you consent to our use of Google Analytics. <a href=”privacy.html”>Privacy policy</a></p>' +
+        '<p class="cookie-banner-text">We use cookies and analytics to understand how visitors use this site. By clicking “Accept all,” you consent to our use of Google Analytics. <a href="privacy.html">Privacy policy</a></p>' +
         '<div class="cookie-banner-actions">' +
           '<button class="btn--cookie-outline" id="cookie-reject">Essential only</button>' +
           '<button class="btn--cookie-outline" id="cookie-prefs-btn">Manage preferences</button>' +

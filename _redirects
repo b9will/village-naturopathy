@@ -34,3 +34,11 @@
 # Article/recipe index pages (individual articles are served directly)
 /all-articles  /journal.html  301
 /all-recipes  /journal.html  301
+
+# --- Oct 2026: pages renamed or folded into other pages (301 keeps SEO equity) ---
+/services/mental-health-counselling/  /services/fatigue/  301
+/services/mental-health-counselling  /services/fatigue/  301
+/conditions/mental-health-emotional-wellbeing/  /conditions/stress-anxiety-nervous-system/  301
+/conditions/mental-health-emotional-wellbeing  /conditions/stress-anxiety-nervous-system/  301
+/conditions/skin-conditions-general-wellness/  /conditions/acne-hormonal-skin/  301
+/conditions/skin-conditions-general-wellness  /conditions/acne-hormonal-skin/  301

@@ -18,3 +18,22 @@
 # HTML should revalidate
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
+
+# Machine-readable mirrors for search and answer engines
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+/*.md
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=3600
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+/robots.txt
+  Cache-Control: public, max-age=3600
+
+# Share images (not fingerprinted, so shorter cache than /assets)
+/og/*
+  Cache-Control: public, max-age=86400
