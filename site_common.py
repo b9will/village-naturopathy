@@ -13,7 +13,7 @@ import re
 BASE = "https://villagenaturopathy.com"
 EMAIL = "drheather@villagenaturopathy.com"
 LASTMOD = "2026-10-25"
-ASSET_V = "20261025"  # bump when css/js change (they are cached as immutable)
+ASSET_V = "20261026"  # bump when css/js change (they are cached as immutable)
 
 # Booking (single Jane account, Oct 2026)
 JANE_BOOK = "https://villagenaturopathy.janeapp.com/#/staff_member/1"
@@ -406,7 +406,8 @@ def head(rel, title, description, path, og_image, og_alt="", ld_graph="", robots
     ttl = attr(title)
     pre = ""
     if preload:
-        pre = f'  <link rel="preload" as="image" href="{preload}" fetchpriority="high">\n'
+        _pw = re.sub(r"\.jpg$", ".webp", preload)
+        pre = f'  <link rel="preload" as="image" href="{_pw}" type="image/webp" fetchpriority="high">\n'
     md = ""
     if markdown_alt:
         md = f'  <link rel="alternate" type="text/markdown" href="{BASE}/{markdown_alt}">\n'

@@ -245,6 +245,86 @@ def build_llms(geo_pages):
 
 
 # ------------------------------------------------------------------ main
+def add_img_dimensions():
+    """Set intrinsic width/height on local <img> tags (prevents layout shift)."""
+    import glob, re
+    from PIL import Image
+    cache = {}
+    def dims(page, src):
+        if src.startswith(("http", "data:", "//")):
+            return None
+        path = os.path.normpath(os.path.join(os.path.dirname(page), src.split("?")[0]))
+        if path not in cache:
+            try:
+                with Image.open(path) as im:
+                    cache[path] = im.size
+            except Exception:
+                cache[path] = None
+        return cache[path]
+    for page in glob.glob(os.path.join(ROOT, "**/*.html"), recursive=True):
+        rel = os.path.relpath(page, ROOT)
+        if rel.startswith(("docs", "og")):
+            continue
+        html = open(page, encoding="utf-8").read()
+        def fix(m):
+            tag = m.group(0)
+            if "width=" in tag and "height=" in tag:
+                return tag
+            src = re.search(r'src="([^"]+)"', tag)
+            d = dims(page, src.group(1)) if src else None
+            if not d:
+                return tag
+            w, h = d
+            if "height=" in tag and "width=" not in tag:
+                hh = int(re.search(r'height="(\d+)"', tag).group(1))
+                return tag.replace("<img ", '<img width="%d" ' % round(w * hh / h), 1)
+            tag = re.sub(r'\s(width|height)="[^"]*"', "", tag)
+            return tag.replace("<img ", '<img width="%d" height="%d" ' % (w, h), 1)
+        new = re.sub(r"<img\b[^>]*>", fix, html)
+        if new != html:
+            open(page, "w", encoding="utf-8").write(new)
+
+
+def add_mobile_heroes():
+    """Give each hero a 800px WebP for phones (LCP) and preload the right one."""
+    import glob, re
+    from PIL import Image
+    made = {}
+    def small(src_abs):
+        out = src_abs.replace(".webp", "-800.webp")
+        if out not in made:
+            if not os.path.exists(out) or os.path.getmtime(out) < os.path.getmtime(src_abs):
+                with Image.open(src_abs) as im:
+                    im = im.convert("RGB")
+                    im = im.resize((800, round(im.height * 800 / im.width)), Image.LANCZOS)
+                    im.save(out, "WEBP", quality=72, method=6)
+            made[out] = True
+        return out
+    for page in glob.glob(os.path.join(ROOT, "**/*.html"), recursive=True):
+        rel = os.path.relpath(page, ROOT)
+        if rel.startswith(("docs", "og")):
+            continue
+        html = open(page, encoding="utf-8").read()
+        if 'class="hero-bg"' not in html or "-800.webp" in html:
+            continue
+        m = re.search(r'(<div class="hero-bg">\s*<picture>\s*)(<source srcset="([^"]+\.webp)" type="image/webp">)', html)
+        if not m:
+            continue
+        src = m.group(3)
+        src_abs = os.path.normpath(os.path.join(os.path.dirname(page), src))
+        if not os.path.exists(src_abs):
+            continue
+        small(src_abs)
+        small_src = src.replace(".webp", "-800.webp")
+        html = html.replace(m.group(2), '<source media="(max-width:700px)" srcset="%s" type="image/webp">\n          %s' % (small_src, m.group(2)), 1)
+        pre = '<link rel="preload" as="image" href="%s" type="image/webp" fetchpriority="high">' % src
+        if pre in html:
+            html = html.replace(pre,
+                '<link rel="preload" as="image" href="%s" type="image/webp" media="(max-width:700px)" fetchpriority="high">\n  '
+                '<link rel="preload" as="image" href="%s" type="image/webp" media="(min-width:701px)" fetchpriority="high">' % (small_src, src), 1)
+        open(page, "w", encoding="utf-8").write(html)
+
+
 def main():
     landing_pages = landing.build()
     geo_pages = geo.build()
@@ -276,6 +356,8 @@ def main():
     build_sitemap(landing_pages, geo_pages)
     write("robots.txt", ROBOTS)
     build_llms(geo_pages)
+    add_img_dimensions()
+    add_mobile_heroes()
     print(f"Built {len(landing_pages)} service/condition pages, {len(geo_pages)} UK pages")
 
 

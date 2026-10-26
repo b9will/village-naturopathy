@@ -23,4 +23,4 @@ All UK location pages currently reuse existing brand images as placeholders.
 
 ## Technical
 - `portrait-1/2/4.jpg` are 118x88 thumbnails. They are not usable as heroes.
-- `assets/images` is about 45 MB. Large PNGs (`regulate-*.png` 2048px, `programs-hero.png`, `conditions-hero.png`, `fees-hero.png`, `cta-1.png`, `flowers-landscape.png`, `kitchen-*.png`) should be converted to WebP/JPG with `srcset`.
+- `assets/images` is about 45 MB. Large PNGs (`regulate-*.png` 2048px, `programs-hero.webp`, `conditions-hero.webp`, `fees-hero.webp`, `cta-1.webp`, `flowers-landscape.webp`, `kitchen-*.png`) should be converted to WebP/JPG with `srcset`.

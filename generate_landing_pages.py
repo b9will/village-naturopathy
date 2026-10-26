@@ -521,7 +521,7 @@ def render_page(page, kind):
             <p class="eyebrow">Understanding your experience</p>
             <h2>{page["empathy_h"]}</h2>
             <p>{page["empathy_p"]}</p>
-            <a class="btn btn--warm" href="{JANE_BOOK}" target="_blank" rel="noopener noreferrer" style="margin-top:var(--space-sm);align-self:flex-start">Request a consultation</a>
+            <a class="btn btn--warm" href="{JANE_BOOK}" target="_blank" rel="noopener noreferrer" style="margin-top:var(--space-sm);align-self:flex-start">Book a consultation</a>
           </div>
         </div>
       </div>
@@ -586,7 +586,7 @@ def render_conditions_hub():
     items = [(c["h1"], f"{BASE}/conditions/{c['slug']}/") for c in CONDITIONS]
     nodes = [
         sc.medical_webpage(url, "Conditions treated at Village Naturopathy", desc, kind="MedicalWebPage",
-                           image=f"{BASE}/assets/images/conditions-hero.png", breadcrumb_id=url + "#breadcrumb"),
+                           image=f"{BASE}/assets/images/conditions-hero.webp", breadcrumb_id=url + "#breadcrumb"),
         {**sc.breadcrumb([("Home", f"{BASE}/"), ("Conditions treated", None)]), "@id": url + "#breadcrumb"},
         {"@type": "ItemList", "name": "Conditions treated", "itemListElement": [
             {"@type": "ListItem", "position": i, "name": plain(n), "url": u} for i, (n, u) in enumerate(items, 1)]},
@@ -619,7 +619,7 @@ def render_conditions_hub():
             <ul class="conditions-list">
 {sc.conditions_list(c["conditions"])}
             </ul>
-            <a class="btn btn--warm" href="{JANE_BOOK}" target="_blank" rel="noopener noreferrer">Request a consultation</a>
+            <a class="btn btn--warm" href="{JANE_BOOK}" target="_blank" rel="noopener noreferrer">Book a consultation</a>
             <a class="btn btn--outline" href="conditions/{c["slug"]}/">Learn more</a>
           </div>
         </div>
@@ -628,7 +628,7 @@ def render_conditions_hub():
 '''
     main = f'''    <section class="page-hero" aria-labelledby="conditions-title">
       <div class="hero-bg">
-        <img src="assets/images/conditions-hero.png" alt="" width="1920" height="1080" fetchpriority="high">
+        <img src="assets/images/conditions-hero.webp" alt="" width="1920" height="1080" fetchpriority="high">
       </div>
       <div class="hero-copy">
         <p class="eyebrow">Conditions treated</p>
@@ -637,7 +637,7 @@ def render_conditions_hub():
       </div>
     </section>
 {sections}
-{sc.cta_banner(rel, eyebrow="Ready to get started?", heading="Don&rsquo;t see your condition listed? We may still be able to help.", body="Request your consultation and let&rsquo;s talk about what&rsquo;s going on. No obligation, no pressure.", button="Request a consultation", href=JANE_BOOK)}
+{sc.cta_banner(rel, eyebrow="Ready to get started?", heading="Don&rsquo;t see your condition listed? We may still be able to help.", body="Book your consultation and let&rsquo;s talk about what&rsquo;s going on. No obligation, no pressure.", button="Book a consultation", href=JANE_BOOK)}
 
     <section class="section" aria-label="Important information">
       <div class="container" style="max-width:720px"><p style="font-size:13px;color:var(--text-subtle);text-align:center">{sc.DISCLAIMER}</p></div>

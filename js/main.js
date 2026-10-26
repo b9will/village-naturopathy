@@ -609,7 +609,7 @@
     document.head.appendChild(s);
   }
   // ---- A/B Testing (config-driven) ----
-  fetch("data/ab-tests.json")
+  fetch("/data/ab-tests.json")
     .then(function (r) { return r.json(); })
     .then(function (tests) {
       Object.keys(tests).forEach(function (testName) {

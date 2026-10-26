@@ -8,7 +8,7 @@ Source: "Village Naturopathy: Website Revisions" (Heather, Oct 2026). Staging: h
 - Fatigue page replaces Mental Health: `/services/mental-health-counselling/` 301s to `/services/fatigue/`.
 - Mental health condition page folded into Stress (301). Skin condition page rebuilt as "Acne & Hormonal Skin Health" (301 from old URL).
 - Single Jane account: the Ontario/UK region modal is gone; every booking button goes to Jane. `book.html` is kept as a simple two-button page (discovery call / consultation).
-- "Request a consultation" / "Book a consult" buttons point to the Jane booking link (this was an open question; easy to revert).
+- "Book a consultation" / "Book a consult" buttons point to the Jane booking link (this was an open question; easy to revert).
 - Homepage testimonials section removed until Heather confirms testimonials are allowed.
 - Programs show "Coming soon"; placeholder Stripe links and the "30-day money-back guarantee" line were removed from the program pages.
 
